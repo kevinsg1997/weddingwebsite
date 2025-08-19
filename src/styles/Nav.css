@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500&display=swap');
+@import "tailwindcss";
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+ul {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+ul li a {
+  color: rgb(223, 145, 71);
+  font-family: 'Cinzel', serif;
+  text-decoration: none;
+}
+
+ul li a:hover {
+  color: rgb(255, 187, 0);
+}
+
+.active {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background-image: url('./imgs/sword.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center bottom;
+  pointer-events: none;
+  transition: all 300ms cubic-bezier(1, -0.5, 0, 1.5);
+}
