@@ -4,7 +4,7 @@ export default function Home() {
       <div className="flex flex-col md:flex-row items-center md:items-start p-4 gap-4">
         <img
           className="w-1/4 h-1/4 md:w-1/4 md:h-1/4 rounded-full object-cover"
-          src="/src/imgs/mage.png"
+          src="/imgs/mage.png"
           alt="Mago"
         />
         <div className="flex-1 text-left">
