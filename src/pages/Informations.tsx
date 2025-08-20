@@ -11,7 +11,7 @@ export default function RSVPForm() {
     setStatus("Enviando...");
 
     try {
-      const response = await fetch("https://weddingwebsiteapi-production.up.railway.app/api/email/confirm", {
+      const response = await fetch("https://weddingwebsiteapi-production.up.railway.app/api/rsvp/confirm", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, attending }),
