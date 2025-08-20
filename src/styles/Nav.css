@@ -8,6 +8,10 @@
   text-align: center;
 }
 
+body {
+  font-family: 'Cinzel', serif;
+}
+
 ul {
   position: relative;
   display: flex;
@@ -17,7 +21,6 @@ ul {
 
 ul li a {
   color: rgb(223, 145, 71);
-  font-family: 'Cinzel', serif;
   text-decoration: none;
 }
 

@@ -1,1 +1,5 @@
-/* Criei só caso vá utilizar para fazer algum ajuste ou outro fora do tailwind */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500&display=swap');
+
+body {
+  font-family: 'Cinzel', serif;
+}
