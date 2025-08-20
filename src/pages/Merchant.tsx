@@ -61,11 +61,11 @@ export default function Merchant() {
         Loja de Presentes 💝
       </h1>
 
-      <div className="bg-gray-500 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {items.map((item) => (
           <div
             key={item.id}
-            className="rounded-2xl shadow-lg p-4 flex flex-col items-center bg-white"
+            className="bg-gray-500 rounded-2xl shadow-lg p-4 flex flex-col items-center bg-white"
           >
             <img
               src={item.img}
