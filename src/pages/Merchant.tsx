@@ -56,7 +56,7 @@ export default function Merchant() {
   };
 
   return (
-    <div className="min-h-screen p-4 sm:p-6 lg:p-8 bg-gray-100">
+    <div className="min-h-screen p-4 sm:p-6 lg:p-8">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8 sm:mb-12">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif mb-4">
@@ -70,7 +70,7 @@ export default function Merchant() {
             {items.map((item) => (
               <div
                 key={item.id}
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300 cursor-pointer flex flex-col"
+                className="parchment-bg rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300 cursor-pointer flex flex-col"
               >
                 <div className="p-4 sm:p-6 flex flex-col flex-grow">
                   <img
