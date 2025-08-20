@@ -20,7 +20,7 @@ export default function Merchant() {
     try {
       setLoading(item.id);
 
-      const response = await fetch("https://localhost:5001/api/payment/create-preference", {
+      const response = await fetch("weddingwebsiteapi-production.up.railway.app/api/payment/create-preference", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
