@@ -70,7 +70,7 @@ export default function Merchant() {
             {items.map((item) => (
               <div
                 key={item.id}
-                className="parchment-bg rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300 cursor-pointer flex flex-col"
+                className="parchment-bg quest-border hover:scale-105 transition-transform duration-300 cursor-pointer group h-full flex flex-col"
               >
                 <div className="p-4 sm:p-6 flex flex-col flex-grow">
                   <img
@@ -81,8 +81,8 @@ export default function Merchant() {
                   <h2 className="font-serif text-lg sm:text-xl font-bold mb-2">{item.name}</h2>
                   <p className="text-sm sm:text-base text-gray-700 flex-grow">{item.description}</p>
                   <div className="mt-4 flex flex-col gap-2">
-                    <span className="bg-yellow-400 text-black px-3 py-2 rounded-lg font-bold text-sm sm:text-base w-full text-center">
-                      {item.price} 💰
+                    <span className="bg-gray-400 px-3 py-2 rounded-lg font-bold text-sm sm:text-base w-full text-center">
+                      <p>R${item.price},00 💰</p>
                     </span>
                     <button
                       onClick={() => handleBuy(item)}
