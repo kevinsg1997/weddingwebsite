@@ -8,9 +8,19 @@ type Item = {
 };
 
 const items: Item[] = [
-  { id: "1", name: "Viagem dos Noivos", price: 300, img: "/img/viagem.jpg" },
-  { id: "2", name: "Jantar Especial", price: 150, img: "/img/jantar.jpg" },
-  { id: "3", name: "Decoração da Casa", price: 200, img: "/img/decoracao.jpg" },
+  { id: "1", name: "Passagem da carruagem real", price: 300, img: "/img/carruagem.jpg" },
+  { id: "2", name: "Entrada para o buffet da realeza", price: 200, img: "/img/buffet.jpg" },
+  { id: "3", name: "Objeto inanimado (+4 para ambiente)", price: 100, img: "/img/decoracao.jpg" },
+  { id: "4", name: "Vassoura com encontamento de vento", price: 250, img: "/img/aspirador.jpg" },
+  { id: "5", name: "Kit para recuperar estâmina", price: 50, img: "/img/ressaca.jpg" },
+  { id: "6", name: "Poção de estâmina extra", price: 50, img: "/img/monster.jpg" },
+  { id: "7", name: "Poção de vida", price: 50, img: "/img/cafe.jpg" },
+  { id: "8", name: "Encantamento +5 de carisma (para vestes)", price: 500, img: "/img/maquinalavar.jpg" },
+  { id: "9", name: "Fogueira de chef level 10", price: 500, img: "/img/fogao.jpg" },
+  { id: "10", name: "Kit do chef level 10 (+5 de satisfação culinária)", price: 250, img: "/img/kitpanela.jpg" },
+  { id: "11", name: "Vestes iti malia para pet (+10 de beleza do pet)", price: 50, img: "/img/roupinhaluke.jpg" },
+  { id: "12", name: "Elemental culinário", price: 250, img: "/img/panelaeletrica.jpg" },
+  { id: "13", name: "Elemental do tempo", price: 250, img: "/img/arcondicionado.jpg" },
 ];
 
 export default function Merchant() {
