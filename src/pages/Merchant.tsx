@@ -56,34 +56,47 @@ export default function Merchant() {
   };
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl text-center mb-6">
-        Loja de Presentes 💝
-      </h1>
+    <div className="min-h-screen p-4 sm:p-6 lg:p-8 bg-gray-100">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-8 sm:mb-12">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif mb-4">
+            Presentes para o Casal
+          </h1>
+          <p className="text-lg sm:text-xl mb-4 sm:mb-6">
+            Ajude Kevin & Pâmela a reunir itens essenciais para sua nova aventura
+          </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {items.map((item) => (
-          <div
-            key={item.id}
-            className="bg-gray-500 rounded-2xl shadow-lg p-4 flex flex-col items-center"
-          >
-            <img
-              src={item.img}
-              alt={item.name}
-              className="w-full h-40 object-cover rounded-xl mb-4"
-            />
-            <h2 className="text-lg text-yellow-600">{item.name}</h2>
-            <p className="text-lg text-lime-300">{item.description}</p>
-            <p className="text-gray-600 mb-2">R$ {item.price.toFixed(2)}</p>
-            <button
-              onClick={() => handleBuy(item)}
-              disabled={loading === item.id}
-              className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition disabled:bg-gray-400"
-            >
-              {loading === item.id ? "Carregando..." : "Presentear 🎁"}
-            </button>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {items.map((item) => (
+              <div
+                key={item.id}
+                className="bg-white rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300 cursor-pointer flex flex-col"
+              >
+                <div className="p-4 sm:p-6 flex flex-col flex-grow">
+                  <img
+                    src={item.img}
+                    alt={item.name}
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
+                  <h2 className="font-serif text-lg sm:text-xl font-bold mb-2">{item.name}</h2>
+                  <p className="text-sm sm:text-base text-gray-700 flex-grow">{item.description}</p>
+                  <div className="mt-4 flex flex-col gap-2">
+                    <span className="bg-yellow-400 text-black px-3 py-2 rounded-lg font-bold text-sm sm:text-base w-full text-center">
+                      {item.price} 💰
+                    </span>
+                    <button
+                      onClick={() => handleBuy(item)}
+                      disabled={loading === item.id}
+                      className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition disabled:bg-gray-400"
+                    >
+                      {loading === item.id ? "Carregando..." : "Presentear 🎁"}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     </div>
   );
