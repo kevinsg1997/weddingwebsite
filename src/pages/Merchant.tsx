@@ -70,7 +70,7 @@ export default function Merchant() {
             {items.map((item) => (
               <div
                 key={item.id}
-                className="border-#CDBE70 border-2px bg-yellow-800 hover:scale-105 transition-transform duration-300 cursor-pointer group h-full flex flex-col"
+                className="border-yellow-500 border-2px bg-#CDBE70 hover:scale-105 transition-transform duration-300 cursor-pointer group h-full flex flex-col"
               >
                 <div className="p-4 sm:p-6 flex flex-col flex-grow">
                   <img
