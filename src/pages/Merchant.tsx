@@ -65,7 +65,7 @@ export default function Merchant() {
         {items.map((item) => (
           <div
             key={item.id}
-            className="bg-gray-500 rounded-2xl shadow-lg p-4 flex flex-col items-center bg-white"
+            className="bg-gray-500 rounded-2xl shadow-lg p-4 flex flex-col items-center"
           >
             <img
               src={item.img}
