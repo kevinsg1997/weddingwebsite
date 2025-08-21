@@ -24,10 +24,15 @@ const items: Item[] = [
   { id: "12", name: "Elemental culinário", price: 250, description: "O quê? Um objeto que cozinha sozinho?", img: "/img/panelaeletrica.jpg" },
   { id: "13", name: "Elemental do tempo", price: 450, description: "Apesar de não controlar a velocidade do tempo, ele pode deixar o ambiente mais fresco.", img: "/img/arcondicionado.jpg" },
   { id: "14", name: "Elemental da aguá", price: 350, description: "Tem força extra contra os indesejados musgos.", img: "/img/wap.jpg" },
+  { id: "15", name: "Bala fini", price: 5, description: "Fini, não fine", img: "/img/fini.jpg" },
 ];
 
 export default function Merchant() {
   const [loading, setLoading] = useState<string | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [guestName, setGuestName] = useState('');
+  const [guestEmail, setGuestEmail] = useState('');
+  const [selectedItem, setSelectedItem] = useState<Item | null>(null);
 
   const handleBuy = async (item: Item) => {
     try {
@@ -84,15 +89,27 @@ export default function Merchant() {
                     alt={item.name}
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
-                  <h2 className="text-lg sm:text-xl font-bold mb-2">{item.name}</h2>
-                  <p className="text-sm sm:text-base text-gray-700 flex-grow">{item.description}</p>
+                  <h2
+                    className="text-lg sm:text-xl font-bold mb-0 text-[rgba(165,33,0,1)] bg-[rgba(255,238,0,0.25)] rounded-t-lg p-2"
+                    style={{ textShadow: '0 0 5px #fffcea, 0 0 10px #ffbb00, 0 0 20px #ffbf60ff', lineHeight: 1 }}
+                  >
+                    {item.name}
+                  </h2>
+                  <p
+                    className="text-sm sm:text-base text-white flex-grow bg-[rgba(255,255,255,0.25)] rounded-b-lg p-2 mt-0 leading-tight"
+                  >
+                    {item.description}
+                  </p>
                   <div className="mt-4 flex flex-col gap-2">
                     <span className="px-3 py-2 rounded-lg text-sm sm:text-base w-full text-center
                                       drop-shadow-lg" style={{ textShadow: '2px 2px 0 #1a0f0a, -1px -1px 0 #1a0f0a' }}>
                       <p>R${item.price},00</p>
                     </span>
                     <button
-                      onClick={() => handleBuy(item)}
+                      onClick={() => {
+                        setSelectedItem(item);
+                        setModalOpen(true);
+                      }}
                       disabled={loading === item.id}
                       className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition disabled:bg-gray-400"
                     >
@@ -105,6 +122,73 @@ export default function Merchant() {
           </div>
         </div>
       </div>
+
+      {modalOpen && selectedItem && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-black rounded-lg p-6 w-full max-w-md">
+            <h2 className="text-xl font-bold mb-4">Deseja sinalizar os noivos?</h2>
+            <p className="mb-4">Informe seu nome e e-mail para que possamos notificar os noivos sobre sua compra.</p>
+
+            <input
+              type="text"
+              placeholder="Seu nome"
+              value={guestName}
+              onChange={(e) => setGuestName(e.target.value)}
+              className="w-full mb-3 p-2 border rounded"
+            />
+            <input
+              type="email"
+              placeholder="Seu e-mail"
+              value={guestEmail}
+              onChange={(e) => setGuestEmail(e.target.value)}
+              className="w-full mb-4 p-2 border rounded"
+            />
+
+            <div className="flex justify-end gap-2">
+              <button
+                onClick={() => setModalOpen(false)}
+                className="px-4 py-2 rounded bg-gray-300"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={async () => {
+                  if (!guestName || !guestEmail) {
+                    alert("Preencha nome e e-mail!");
+                    return;
+                  }
+
+                  try {
+                    await fetch("https://weddingwebsiteapi-production.up.railway.app/api/payment/confirmPurchase", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                        Name: guestName,
+                        Email: guestEmail,
+                        Attending: false,
+                        ItemName: selectedItem.name
+                      }),
+                    });
+                  } catch (err) {
+                    console.error("Erro ao notificar os noivos", err);
+                  }
+
+                  if (selectedItem) {
+                    handleBuy(selectedItem);
+                  }
+
+                  setModalOpen(false);
+                  setGuestName('');
+                  setGuestEmail('');
+                }}
+                className="px-4 py-2 rounded bg-blue-500 text-white"
+              >
+                Confirmar e Comprar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

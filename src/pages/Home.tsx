@@ -8,7 +8,7 @@ export default function Home() {
           alt="Mago"
         />
         <div className="flex-1 text-left">
-          <h1 className="text-white text-base md:text-lg">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif quest-title mb-4">
             Merlin, o mago:
           </h1>
           <br/>

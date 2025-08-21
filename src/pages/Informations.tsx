@@ -16,7 +16,6 @@ const Info = () => {
   });
   const [status, setStatus] = useState("");
 
-  // Wedding date - Update this to your actual wedding date
   const weddingDate = new Date("2026-02-28T16:00:00").getTime();
 
   useEffect(() => {
@@ -33,9 +32,7 @@ const Info = () => {
       const hours = Math.floor(
         (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
       );
-      const minutes = Math.floor(
-        (distance % (1000 * 60 * 60)) / (1000 * 60)
-      );
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
       setTimeLeft({ days, hours, minutes, seconds });
@@ -44,7 +41,7 @@ const Info = () => {
     return () => clearInterval(timer);
   }, [weddingDate]);
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!formData.name || !formData.email) {
@@ -52,19 +49,42 @@ const Info = () => {
       return;
     }
 
-    console.log("Confirmação de presença:", formData);
+    try {
+      const response = await fetch(
+        "https://weddingwebsiteapi-production.up.railway.app/api/RSVP/confirm",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            Name: formData.name,
+            Email: formData.email,
+            Attending: formData.attending,
+            ItemName: "", // preencha se houver item associado
+          }),
+        }
+      );
 
-    setStatus(
-      formData.attending
-        ? "🎉 Estamos muito felizes em contar com você nesta aventura!"
-        : "📜 Sua ausência foi registrada. Estaremos com você em pensamento!"
-    );
+      if (!response.ok) {
+        const data = await response.json();
+        setStatus(`❌ Erro: ${data.message || "Não foi possível enviar."}`);
+        return;
+      }
 
-    setTimeout(() => {
-      setIsModalOpen(false);
-      setFormData({ name: "", email: "", attending: false });
-      setStatus("");
-    }, 3000);
+      setStatus(
+        formData.attending
+          ? "🎉 Estamos muito felizes em contar com você nesta aventura!"
+          : "📜 Sua ausência foi registrada. Estaremos com você em pensamento!"
+      );
+
+      setTimeout(() => {
+        setIsModalOpen(false);
+        setFormData({ name: "", email: "", attending: false });
+        setStatus("");
+      }, 3000);
+    } catch (err) {
+      console.error(err);
+      setStatus("❌ Erro ao enviar os dados, tente novamente.");
+    }
   };
 
   return (
@@ -79,7 +99,6 @@ const Info = () => {
           </p>
         </div>
 
-        {/* Countdown Timer */}
         <div className="parchment-bg p-4 sm:p-6 lg:p-8 rounded-lg quest-border mb-6 sm:mb-8">
           <h2 className="text-2xl sm:text-3xl font-bold quest-title font-serif text-center mb-4 sm:mb-6">
             ⏰ Tempo Até a Aventura Começar
@@ -116,7 +135,6 @@ const Info = () => {
           </div>
         </div>
 
-        {/* Quest Details */}
         <div className="grid md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8">
           <div className="parchment-bg p-4 sm:p-6 rounded-lg quest-border">
             <h3 className="text-xl sm:text-2xl font-bold quest-title font-serif mb-4">
@@ -142,7 +160,6 @@ const Info = () => {
           </div>
         </div>
 
-        {/* Map Section */}
         <div className="parchment-bg p-4 sm:p-6 rounded-lg quest-border mb-6 sm:mb-8">
           <h3 className="text-xl sm:text-2xl font-bold quest-title font-serif mb-4">
             🗺️ Local da Missão
@@ -160,7 +177,6 @@ const Info = () => {
           </div>
         </div>
 
-        {/* Accept Quest Button */}
         <div className="text-center">
           <button
             onClick={() => setIsModalOpen(true)}
@@ -170,11 +186,9 @@ const Info = () => {
           </button>
         </div>
 
-        {/* Modal */}
         {isModalOpen && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
             <div className="parchment-bg quest-border rounded-lg p-6 max-w-md w-full mx-4 relative">
-              {/* Botão Fechar */}
               <button
                 onClick={() => setIsModalOpen(false)}
                 className="absolute top-2 right-2 text-gray-700 hover:text-red-600 text-xl"
@@ -187,7 +201,6 @@ const Info = () => {
               </h2>
 
               <form onSubmit={handleFormSubmit} className="space-y-4">
-                {/* Nome */}
                 <div>
                   <label
                     htmlFor="name"
@@ -208,7 +221,6 @@ const Info = () => {
                   />
                 </div>
 
-                {/* Email */}
                 <div>
                   <label
                     htmlFor="email"
@@ -229,7 +241,6 @@ const Info = () => {
                   />
                 </div>
 
-                {/* Checkbox Presença */}
                 <div className="flex items-center space-x-2">
                   <input
                     id="attending"
@@ -248,7 +259,6 @@ const Info = () => {
                   </label>
                 </div>
 
-                {/* Botões */}
                 <div className="flex gap-4 pt-4">
                   <button
                     type="button"
