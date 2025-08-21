@@ -24,7 +24,7 @@ function Nav() {
   }, [location.pathname]);
 
   return (
-    <div className="fixed top-0 left-1/2 transform -translate-x-1/2 w-full z-50 max-h-[10%] overflow-auto">
+    <div className="fixed top-0 left-1/2 transform -translate-x-1/2 w-full z-50 max-h-[10%]">
       <nav className="bg-[#403c37] shadow-md rounded-bl-2xl rounded-br-2xl">
         <ul className="flex flex-wrap justify-center gap-4 p-4">
           <li ref={activeRef} className="active"></li>

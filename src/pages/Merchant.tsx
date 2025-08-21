@@ -70,7 +70,13 @@ export default function Merchant() {
             {items.map((item) => (
               <div
                 key={item.id}
-                className="border-yellow-500 border-2px bg-#CDBE70 hover:scale-105 transition-transform duration-300 cursor-pointer group h-full flex flex-col"
+                className="bg-gradient-to-tr 
+                            from-[rgba(17,17,17,0.5)] 
+                            via-[rgba(255,187,0,0.5)] 
+                            to-[rgba(17,17,17,0.5)] 
+                            border-2 border-[#ffbb00] rounded-xl
+                            hover:scale-105 transition-transform duration-300 cursor-pointer
+                            group h-full flex flex-col"
               >
                 <div className="p-4 sm:p-6 flex flex-col flex-grow">
                   <img
@@ -78,11 +84,12 @@ export default function Merchant() {
                     alt={item.name}
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
-                  <h2 className="font-serif text-lg sm:text-xl font-bold mb-2">{item.name}</h2>
+                  <h2 className="text-lg sm:text-xl font-bold mb-2">{item.name}</h2>
                   <p className="text-sm sm:text-base text-gray-700 flex-grow">{item.description}</p>
                   <div className="mt-4 flex flex-col gap-2">
-                    <span className="px-3 py-2 rounded-lg font-bold text-sm sm:text-base w-full text-center">
-                      <p>R${item.price},00 💰</p>
+                    <span className="px-3 py-2 rounded-lg text-sm sm:text-base w-full text-center
+                                      drop-shadow-lg" style={{ textShadow: '2px 2px 0 #1a0f0a, -1px -1px 0 #1a0f0a' }}>
+                      <p>R${item.price},00</p>
                     </span>
                     <button
                       onClick={() => handleBuy(item)}
