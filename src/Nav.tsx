@@ -32,7 +32,7 @@ function Nav() {
             <li
               key={item.label}
               className="hover:text-red-700"
-              style={{fontFamily: "'Cinzel', serif"}}
+              style={{fontFamily: "serif"}}
               ref={(el) => {
                 if (el) itemRefs.current[index] = el;
               }}

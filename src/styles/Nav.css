@@ -9,7 +9,8 @@
 }
 
 body {
-  font-family: 'Cinzel', serif;
+  font-family: serif;
+  font-weight: bold;
 }
 
 ul {
@@ -20,7 +21,7 @@ ul {
 }
 
 ul li a {
-  color: rgb(223, 145, 71);
+  color: rgba(255,187,0,0.5);
   text-decoration: none;
 }
 
