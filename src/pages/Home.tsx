@@ -5,8 +5,8 @@ export default function Home() {
   const navigate = useNavigate();
   
   return (
-    <div className="w-auto h-auto">
-      <div className="flex flex-col items-center p-4 gap-4">
+    <div className="min-h-screen p-4 sm:p-6 lg:p-8">
+      <div className="flex flex-col items-center gap-4">
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif quest-title mb-4">
           Bem-vindo à Aventura de
         </h1>
@@ -31,7 +31,7 @@ export default function Home() {
     Eu costumava ser um aventureiro como você, até que tomei uma flechada no joelho.<br/>
     Em meus sonhos, vi você chegando a um lugar especial, onde um casal cheio de amor parecia precisar da sua ajuda.  
     Eles sorriram ao te ver, e algo me diz que sua presença fará toda a diferença.<br/>
-    Tenho quase certeza de que vi esse casal subindo a rua mais cedo, ouvi dizer que são novos aqui na vila.
+    Tenho quase certeza de que vi esse casal subindo a rua mais cedo, ouvi dizer que são novos aqui na cidade.
   </p>
   <button
     onClick={() => navigate('/mission')}
