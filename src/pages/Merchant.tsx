@@ -90,8 +90,8 @@ export default function Merchant() {
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
                   <h2
-                    className="text-lg sm:text-xl font-bold mb-0 text-[rgba(165,33,0,1)] bg-[rgba(255,238,0,0.25)] rounded-t-lg p-2"
-                    style={{ textShadow: '0 0 5px #fffcea, 0 0 10px #ffbb00, 0 0 20px #ffbf60ff', lineHeight: 1 }}
+                    className="text-lg sm:text-xl font-bold mb-0 text-[rgba(255,145,0,1)] bg-[rgba(255,238,0,0.25)] rounded-t-lg p-2"
+                    style={{ textShadow: '0 0 5px #0000006c, 0 0 10px #0000006c, 0 0 20px #0000006c', lineHeight: 1 }}
                   >
                     {item.name}
                   </h2>
@@ -102,7 +102,7 @@ export default function Merchant() {
                   </p>
                   <div className="mt-4 flex flex-col gap-2">
                     <span className="px-3 py-2 rounded-lg text-sm sm:text-base w-full text-center
-                                      drop-shadow-lg" style={{ textShadow: '2px 2px 0 #1a0f0a, -1px -1px 0 #1a0f0a' }}>
+                                      drop-shadow-lg" style={{ textShadow: '0 0 5px #0000006c, 0 0 10px #0000006c, 0 0 20px #0000006c', lineHeight: 1 }}>
                       <p>R${item.price},00</p>
                     </span>
                     <button
@@ -111,7 +111,7 @@ export default function Merchant() {
                         setModalOpen(true);
                       }}
                       disabled={loading === item.id}
-                      className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition disabled:bg-gray-400"
+                      className="purchase-button w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition disabled:bg-gray-400"
                     >
                       {loading === item.id ? "Carregando..." : "Presentear 🎁"}
                     </button>

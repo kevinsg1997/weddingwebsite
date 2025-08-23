@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Corinthia:wght@400;700&family=League+Script&display=swap');
+
+body {
+    color: rgb(48, 35, 0);
+}
+
+.kep {
+    font-family: 'Corinthia', cursive;
+    font-weight: normal;
+    color: rgb(131, 96, 0);
+}

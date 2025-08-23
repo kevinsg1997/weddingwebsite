@@ -2,9 +2,11 @@
 @import "tailwindcss";
 
 #root {
-  max-width: 1280px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 2rem;
   text-align: center;
 }
 
@@ -16,18 +18,18 @@ body {
 ul {
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   gap: 1rem;
 }
 
 ul li a {
-  color: rgba(255,187,0,0.5);
+  color: rgb(0, 0, 0);
   text-decoration: none;
   font-weight: bold;
 }
 
 ul li a:hover {
-  color: rgb(255, 187, 0);
+  color: rgb(85, 62, 0);
   font-weight: bold;
 }
 
@@ -37,9 +39,6 @@ ul li a:hover {
   left: 0;
   width: 100%;
   height: 50%;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center bottom;
   pointer-events: none;
   transition: all 300ms cubic-bezier(1, -0.5, 0, 1.5);
 }

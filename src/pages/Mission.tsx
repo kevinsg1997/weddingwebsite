@@ -3,11 +3,7 @@ import { useState, useEffect } from "react";
 
 type CellType = "grass" | "block" | "interact" |
                 "player" | "nun" | "mage" | "kepam" | "merchant" |
-                "vStreet" | "vStreetBEnd" | "vStreetTEnd" |
-                "hStreet" | "hStreetLEnd" | "hStreetREnd" |
-                "lStreetTR" | "lStreetTL" | "lStreetBR" | "lStreetBL" |
-                "tStreetT" | "tStreetB" | "tStreetL" | "tStreetR" |
-                "centerStreet" | "crossStreet";
+                "street";
 
 const GRID_ROWS = 16;
 const GRID_COLS = 16;
@@ -34,22 +30,17 @@ export default function Mission() {
           row.push("block");
         } else if ((r === 3 && c === 1) ||
                     (r === 3 && c === 8) ||
-                    (r === 5 && c === 14)) {
-          row.push("vStreetTEnd");
-        } else if ((r === 13 && c === 14)) {
-          row.push("vStreetBEnd");
-        } else if ((r === 4 && c === 1) ||
-                    (r === 4 && c === 8)) {
-          row.push("vStreet");
-        } else if ((r === 5 && c === 1)) {
-          row.push("lStreetTR");
-        } else if ((r === 5 && c >= 2 && c <= 7)) {
-          row.push("hStreet");
-        } else if ((r === 5 && c === 8)) {
-          row.push("tStreetR");
-        } else if ((r === 6 && c === 8)) {
-          row.push("tStreetL");
-        } else if (r === 4 && c === 14) {
+                    (r === 5 && c === 14) ||
+                    (r === 13 && c === 14) ||
+                    (r === 4 && c === 1) ||
+                    (r === 4 && c === 8) ||
+                    (r === 5 && c === 1) ||
+                    (r === 5 && c >= 2 && c <= 7) ||
+                    (r === 5 && c === 8) ||
+                    (r === 6 && c === 8)) {
+          row.push("street");
+        }
+        else if (r === 4 && c === 14) {
           row.push("nun");
         } else if (r === 14 && c === 14) {
           row.push("mage");
@@ -87,7 +78,7 @@ export default function Mission() {
     }
 
     if (grid[newRow][newCol] === "grass" ||
-        grid.flat().some(cell => cell.includes("Street"))) {
+        grid.flat().some(cell => cell.includes("street"))) {
       const updatedGrid = grid.map((row) => [...row]);
       updatedGrid[playerPos.row][playerPos.col] = prevCell;
       setPrevCell(updatedGrid[newRow][newCol]);
@@ -125,7 +116,7 @@ export default function Mission() {
   };
 
   return (
-    <div className="flex flex-col items-center p-4 bg-gray-900 min-h-screen pt-[10%] border-gray-500">
+    <div className="flex flex-col items-center p-4 min-h-screen pt-[10%] border-gray-500">
       <div
         className="grid"
         style={{
@@ -140,11 +131,13 @@ export default function Mission() {
               onClick={() => handleCellClick(r, c)}
               className={`border border-gray-700 ${
                 cell === "grass"
-                  ? "bg-gray-200"
+                  ? "bg-green-200"
                   : cell === "block"
                   ? "bg-gray-600 cursor-not-allowed"
                   : cell === "interact"
                   ? "bg-yellow-400"
+                  : cell === "street"
+                  ? "bg-gray-400"
                   : cell === "player"
                   ? "bg-blue-500"
                   : cell === "nun"
