@@ -4,8 +4,8 @@ import { Link, useLocation } from "react-router-dom";
 
 const navItems = [
   { label: "Início", href: "/" },
-  { label: "Presentes", href: "/merchant" },
-  { label: "Informações", href: "/informations" }
+  { label: "Informações", href: "/informations" },
+  { label: "Presentes", href: "/merchant" }
 ];
 
 function Nav() {
@@ -25,7 +25,7 @@ function Nav() {
   return (
     <div className="relative top-0 w-screen z-50 max-h-[10%] max-w-full">
       <nav className="">
-        <ul className="flex flex-wrap justify-start gap-4 p-4">
+        <ul className="flex flex-wrap justify-self-center gap-4 p-4">
           <li ref={activeRef} className="active"></li>
           {navItems.map((item, index) => (
             <li
