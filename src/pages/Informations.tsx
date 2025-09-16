@@ -105,30 +105,30 @@ const Info = () => {
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 text-center">
             <div className="bg-quest-gold p-3 sm:p-4 rounded-lg">
-              <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">
+              <div className="text-xl sm:text-2xl lg:text-3xl font-bold">
                 {timeLeft.days}
               </div>
-              <div className="text-white font-sans text-xs sm:text-sm">Dias</div>
+              <div className="font-sans text-xs sm:text-sm">Dias</div>
             </div>
             <div className="bg-quest-gold p-3 sm:p-4 rounded-lg">
-              <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">
+              <div className="text-xl sm:text-2xl lg:text-3xl font-bold">
                 {timeLeft.hours}
               </div>
-              <div className="text-white font-sans text-xs sm:text-sm">Horas</div>
+              <div className="font-sans text-xs sm:text-sm">Horas</div>
             </div>
             <div className="bg-quest-gold p-3 sm:p-4 rounded-lg">
-              <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">
+              <div className="text-xl sm:text-2xl lg:text-3xl font-bold">
                 {timeLeft.minutes}
               </div>
-              <div className="text-white font-sans text-xs sm:text-sm">
+              <div className="font-sans text-xs sm:text-sm">
                 Minutos
               </div>
             </div>
             <div className="bg-quest-gold p-3 sm:p-4 rounded-lg">
-              <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">
+              <div className="text-xl sm:text-2xl lg:text-3xl font-bold">
                 {timeLeft.seconds}
               </div>
-              <div className="text-white font-sans text-xs sm:text-sm">
+              <div className="font-sans text-xs sm:text-sm">
                 Segundos
               </div>
             </div>
@@ -180,7 +180,7 @@ const Info = () => {
         <div className="text-center">
           <button
             onClick={() => setIsModalOpen(true)}
-            className="bg-quest-green hover:bg-quest-green/90 text-white font-bold py-3 sm:py-4 px-6 sm:px-8 text-lg sm:text-xl rounded-lg quest-border animate-quest-glow font-sans"
+            className="bg-quest-green hover:bg-quest-green/90 font-bold py-3 sm:py-4 px-6 sm:px-8 text-lg sm:text-xl rounded-lg quest-border animate-quest-glow font-sans"
           >
             ⚔️ Aceitar Missão
           </button>
@@ -269,7 +269,7 @@ const Info = () => {
                   </button>
                   <button
                     type="submit"
-                    className="flex-1 bg-quest-green hover:bg-quest-green/90 text-white rounded py-2"
+                    className="flex-1 bg-quest-green hover:bg-quest-green/90 rounded py-2"
                   >
                     Confirmar Presença
                   </button>
