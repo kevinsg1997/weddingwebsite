@@ -104,19 +104,19 @@ const Info = () => {
             ⏰ Tempo Até a Aventura Começar
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 text-center">
-            <div className="bg-quest-gold p-3 sm:p-4 rounded-lg">
+            <div className="bg-[rgba(255,255,255,0.25)] p-3 sm:p-4 rounded-lg">
               <div className="text-xl sm:text-2xl lg:text-3xl font-bold">
                 {timeLeft.days}
               </div>
               <div className="font-sans text-xs sm:text-sm">Dias</div>
             </div>
-            <div className="bg-quest-gold p-3 sm:p-4 rounded-lg">
+            <div className="bg-[rgba(255,255,255,0.25)] p-3 sm:p-4 rounded-lg">
               <div className="text-xl sm:text-2xl lg:text-3xl font-bold">
                 {timeLeft.hours}
               </div>
               <div className="font-sans text-xs sm:text-sm">Horas</div>
             </div>
-            <div className="bg-quest-gold p-3 sm:p-4 rounded-lg">
+            <div className="bg-[rgba(255,255,255,0.25)] p-3 sm:p-4 rounded-lg">
               <div className="text-xl sm:text-2xl lg:text-3xl font-bold">
                 {timeLeft.minutes}
               </div>
@@ -124,7 +124,7 @@ const Info = () => {
                 Minutos
               </div>
             </div>
-            <div className="bg-quest-gold p-3 sm:p-4 rounded-lg">
+            <div className="bg-[rgba(255,255,255,0.25)] p-3 sm:p-4 rounded-lg">
               <div className="text-xl sm:text-2xl lg:text-3xl font-bold">
                 {timeLeft.seconds}
               </div>
