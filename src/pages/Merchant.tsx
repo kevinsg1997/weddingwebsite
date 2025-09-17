@@ -1,38 +1,43 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import '../styles/merchant.css';
 
 type Item = {
   id: string;
+  createdAt: string;
+  updatedAt?: string;
   name: string;
-  price: number;
   description: string;
-  img: string;
+  price: number;
+  available: boolean;
+  buyer?: string;
+  uri?: string;
+  deleted: boolean;
 };
 
-const items: Item[] = [
-  { id: "1", name: "Passagem da carruagem real", price: 300, description: "Nova aventura garantida para Kevin & Pâmela.", img: "/img/carruagem.jpg" },
-  { id: "2", name: "Entrada para o rodizio da realeza", price: 180, description: "O rodizio mais esperado de todo o reino (Arco-Iris).", img: "/img/buffet.jpg" },
-  { id: "3", name: "Objeto inanimado (+4 para ambiente)", price: 100, description: "Um objeto sem nada muito especial, mas causa conforto aos olhos.", img: "/img/decoracao.jpg" },
-  { id: "4", name: "Vassoura com encontamento de vento", price: 250, description: "Uma vassoura incrível, capaz de limpar as sujeiras mais dificeis.", img: "/img/aspirador.jpg" },
-  { id: "5", name: "Kit de recuperação de estâmina", price: 50, description: "Após uma boa aventura é sempre bom se recuperar!", img: "/img/ressaca.jpg" },
-  { id: "6", name: "Poção de estâmina extra", price: 50, description: "Para aventuras com longa duração!", img: "/img/monster.jpg" },
-  { id: "7", name: "Poção de vida", price: 50, description: "Ajuda os aventureiros a se prepararem para a aventura.", img: "/img/cafe.jpg" },
-  { id: "8", name: "Encantamento +5 de carisma (para vestes)", price: 500, description: "Nada como uma veste limpa e cheirosa!", img: "/img/maquinalavar.jpg" },
-  { id: "9", name: "Fogueira de chef level 10", price: 500, description: "Somente os chefs mais cobiçados sabem utilizá-la.", img: "/img/fogao.jpg" },
-  { id: "10", name: "Kit do chef level 10 (+5 de satisfação culinária)", price: 250, description: "Dizem que ajuda no preparo, mas o que importa é a habilidade.", img: "/img/kitpanela.jpg" },
-  { id: "11", name: "Vestes iti malia para pet (+10 de beleza do pet)", price: 50, description: "Ajude o pet dos aventureiros a estar preparado para toda jornada!", img: "/img/roupinhaluke.jpg" },
-  { id: "12", name: "Elemental culinário", price: 250, description: "O quê? Um objeto que cozinha sozinho?", img: "/img/panelaeletrica.jpg" },
-  { id: "13", name: "Elemental do tempo", price: 450, description: "Apesar de não controlar a velocidade do tempo, ele pode deixar o ambiente mais fresco.", img: "/img/arcondicionado.jpg" },
-  { id: "14", name: "Elemental da aguá", price: 350, description: "Tem força extra contra os indesejados musgos.", img: "/img/wap.jpg" },
-  { id: "15", name: "Bala fini", price: 5, description: "Fini, não fine", img: "/img/fini.jpg" },
-];
-
 export default function Merchant() {
+  const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState<string | null>(null);
+  const [isLoadingItems, setIsLoadingItems] = useState<boolean>(true);
   const [modalOpen, setModalOpen] = useState(false);
   const [guestName, setGuestName] = useState('');
   const [guestEmail, setGuestEmail] = useState('');
   const [selectedItem, setSelectedItem] = useState<Item | null>(null);
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const response = await fetch("https://weddingwebsiteapi-production.up.railway.app/api/payment/not-deleted");
+        const data = await response.json();
+        setItems(data);
+      } catch (error) {
+        console.error("Erro ao buscar itens da loja:", error);
+      } finally {
+        setIsLoadingItems(false);
+      }
+    };
+
+    fetchItems();
+  }, []);
 
   const handleBuy = async (item: Item) => {
     try {
@@ -71,56 +76,65 @@ export default function Merchant() {
             Ajude Kevin & Pâmela a reunir itens essenciais para sua nova aventura
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {items.map((item) => (
-              <div
-                key={item.id}
-                className="bg-gradient-to-tr 
-                            from-[rgba(17,17,17,0.5)] 
-                            via-[rgba(211,155,0,0.5)] 
-                            to-[rgba(17,17,17,0.5)] 
-                            border-2 border-[#ffbb00] rounded-xl
-                            hover:scale-105 transition-transform duration-300 cursor-pointer
+          {isLoadingItems ? (
+            <p className="text-white">Carregando itens...</p>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {items.map((item) => (
+                <div
+                  key={item.id}
+                  className="bg-gradient-to-tr from-[rgba(17,17,17,0.5)] via-[rgba(211,155,0,0.5)] to-[rgba(17,17,17,0.5)] 
+                            border-2 border-[#ffbb00] rounded-xl hover:scale-105 transition-transform duration-300 cursor-pointer
                             group h-full flex flex-col"
-              >
-                <div className="p-4 sm:p-6 flex flex-col flex-grow">
-                  <img
-                    src={item.img}
-                    alt={item.name}
-                    className="w-full h-48 object-cover rounded-lg mb-4"
-                  />
-                  <h2
-                    className="text-lg sm:text-xl font-bold mb-0 text-[rgba(255,238,0,1)] bg-[rgba(255,238,0,0.25)] rounded-t-lg p-2"
-                    style={{ textShadow: '0 0 5px #0000006c, 0 0 5px #0000006c, 0 0 5px #0000006c', lineHeight: 1 }}
-                  >
-                    {item.name}
-                  </h2>
-                  <p
-                    className="text-sm sm:text-base text-white flex-grow bg-[rgba(255,255,255,0.25)] rounded-b-lg p-2 mt-0 leading-tight
-                                drop-shadow-lg" style={{ textShadow: '0 0 5px #0000006c, 0 0 5px #0000006c, 0 0 5px #0000006c'}}
-                  >
-                    {item.description}
-                  </p>
-                  <div className="mt-4 flex flex-col gap-2">
-                    <span className="px-3 py-2 rounded-lg text-sm sm:text-base w-full text-center text-[rgba(255,238,0,1)]
-                                      drop-shadow-lg" style={{ textShadow: '0 0 5px #0000006c, 0 0 5px #0000006c, 0 0 5px #0000006c', lineHeight: 1 }}>
-                      <p>R${item.price},00</p>
-                    </span>
-                    <button
-                      onClick={() => {
-                        setSelectedItem(item);
-                        setModalOpen(true);
-                      }}
-                      disabled={loading === item.id}
-                      className="purchase-button w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition disabled:bg-gray-400"
+                >
+                  <div className="p-4 sm:p-6 flex flex-col flex-grow">
+                    <img
+                      src={item.uri || "/img/default.jpg"}
+                      alt={item.name}
+                      className="w-full h-48 object-cover rounded-lg mb-4"
+                    />
+                    <h2
+                      className="text-lg sm:text-xl font-bold mb-0 text-[rgba(255,238,0,1)] bg-[rgba(255,238,0,0.25)] rounded-t-lg p-2"
+                      style={{ textShadow: '0 0 5px #0000006c', lineHeight: 1 }}
                     >
-                      {loading === item.id ? "Carregando..." : "Presentear 🎁"}
-                    </button>
+                      {item.name}
+                    </h2>
+                    <p
+                      className="text-sm sm:text-base text-white flex-grow bg-[rgba(255,255,255,0.25)] rounded-b-lg p-2 mt-0 leading-tight drop-shadow-lg"
+                      style={{ textShadow: '0 0 5px #0000006c' }}
+                    >
+                      {item.description}
+                    </p>
+
+                    <div className="mt-4 flex flex-col gap-2">
+                      {item.available ? (
+                        <>
+                          <span className="px-3 py-2 rounded-lg text-sm sm:text-base w-full text-center text-[rgba(255,238,0,1)] drop-shadow-lg"
+                                style={{ textShadow: '0 0 5px #0000006c', lineHeight: 1 }}>
+                            <p>R${item.price},00</p>
+                          </span>
+                          <button
+                            onClick={() => {
+                              setSelectedItem(item);
+                              setModalOpen(true);
+                            }}
+                            disabled={loading === item.id}
+                            className="purchase-button w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition disabled:bg-gray-400"
+                          >
+                            {loading === item.id ? "Carregando..." : "Presentear 🎁"}
+                          </button>
+                        </>
+                      ) : (
+                        <span className="px-3 py-2 rounded-lg text-sm sm:text-base w-full text-center text-white bg-gray-600">
+                          Já presenteado por: <strong>{item.buyer || "Convidado(a)"}</strong>
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
