@@ -26,7 +26,7 @@ export default function Merchant() {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await fetch("https://weddingwebsiteapi-production.up.railway.app/api/PurchaseItems/not-deleted");
+        const response = await fetch("https://weddingwebsiteapi-production.up.railway.app/api/PurchaseItem/not-deleted");
         const data = await response.json();
         setItems(data);
       } catch (error) {
