@@ -1,20 +1,13 @@
 import React, { useState, useEffect } from "react";
 import '../styles/informations.css';
 
-const Info = () => {
+const Info: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0,
   });
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    attending: false,
-  });
-  const [status, setStatus] = useState("");
 
   const weddingDate = new Date("2026-02-28T16:00:00").getTime();
 
@@ -40,52 +33,6 @@ const Info = () => {
 
     return () => clearInterval(timer);
   }, [weddingDate]);
-
-  const handleFormSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!formData.name || !formData.email) {
-      setStatus("❌ Por favor, preencha seu nome e e-mail.");
-      return;
-    }
-
-    try {
-      const response = await fetch(
-        "https://weddingwebsiteapi-production.up.railway.app/api/RSVP/confirm",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            Name: formData.name,
-            Email: formData.email,
-            Attending: formData.attending,
-            ItemName: "", // preencha se houver item associado
-          }),
-        }
-      );
-
-      if (!response.ok) {
-        const data = await response.json();
-        setStatus(`❌ Erro: ${data.message || "Não foi possível enviar."}`);
-        return;
-      }
-
-      setStatus(
-        formData.attending
-          ? "🎉 Estamos muito felizes em contar com você nesta aventura!"
-          : "📜 Sua ausência foi registrada. Estaremos com você em pensamento!"
-      );
-
-      setTimeout(() => {
-        setIsModalOpen(false);
-        setFormData({ name: "", email: "", attending: false });
-        setStatus("");
-      }, 3000);
-    } catch (err) {
-      console.error(err);
-      setStatus("❌ Erro ao enviar os dados, tente novamente.");
-    }
-  };
 
   return (
     <div className="min-h-screen p-4 sm:p-6 lg:p-8">
@@ -116,21 +63,17 @@ const Info = () => {
               </div>
               <div className="font-sans text-xs sm:text-sm">Horas</div>
             </div>
-            <div className="bg-[rgba(0,0,0,0.15))] p-3 sm:p-4 rounded-lg">
+            <div className="bg-[rgba(0,0,0,0.15)] p-3 sm:p-4 rounded-lg">
               <div className="text-xl sm:text-2xl lg:text-3xl font-bold">
                 {timeLeft.minutes}
               </div>
-              <div className="font-sans text-xs sm:text-sm">
-                Minutos
-              </div>
+              <div className="font-sans text-xs sm:text-sm">Minutos</div>
             </div>
             <div className="bg-[rgba(0,0,0,0.15)] p-3 sm:p-4 rounded-lg">
               <div className="text-xl sm:text-2xl lg:text-3xl font-bold">
                 {timeLeft.seconds}
               </div>
-              <div className="font-sans text-xs sm:text-sm">
-                Segundos
-              </div>
+              <div className="font-sans text-xs sm:text-sm">Segundos</div>
             </div>
           </div>
         </div>
@@ -154,8 +97,7 @@ const Info = () => {
             <p className="readable-text font-sans text-sm sm:text-base lg:text-lg">
               <strong>Código de Vestimenta:</strong> Social/Semi-formal<br />
               <strong>Cores:</strong> Qualquer cor exceto branco ou cores das paletas de madinhas e padrinhos.<br />
-              <strong>Especial:</strong> Fique à vontade para adicionar acessórios
-              de fantasia! Seja criativo e venha se divertir conosco!
+              <strong>Especial:</strong> Fique à vontade para adicionar acessórios de fantasia! Seja criativo e venha se divertir conosco!
             </p>
           </div>
         </div>
@@ -167,130 +109,22 @@ const Info = () => {
           <div className="bg-quest-stone-light rounded-lg p-4 min-h-48 sm:min-h-64 flex items-center justify-center">
             <p className="readable-text font-sans text-sm sm:text-base lg:text-lg text-center">
               📍 Mapa do Local da Missão<br />
-            <div className="rounded-2xl shadow-lg overflow-hidden w-full h-[400px]">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3583.513329909012!2d-49.1202727!3d-25.5634597!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dcfbaae5ac8ee7%3A0x1b5afdeee19c68e7!2sR.%20J%C3%BAlio%20C%C3%A9sar%20Setenareski%2C%202493%20-%20Mergulh%C3%A3o%2C%20S%C3%A3o%20Jos%C3%A9%20dos%20Pinhais%20-%20PR%2C%2083085-290!5e0!3m2!1spt-BR!2sbr!4v1699999999999"
-                width="100%"
-                height="100%"
-                className="w-full h-full border-2 border-[rgba(121,92,0,0.65)] rounded-2xl"
-                allowFullScreen
-                loading="lazy"
-              ></iframe>
-            </div>
+              <div className="rounded-2xl shadow-lg overflow-hidden w-full h-[400px]">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3583.513329909012!2d-49.1202727!3d-25.5634597!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dcfbaae5ac8ee7%3A0x1b5afdeee19c68e7!2sR.%20J%C3%BAlio%20C%C3%A9sar%20Setenareski%2C%202493%20-%20Mergulh%C3%A3o%2C%20S%C3%A3o%20Jos%C3%A9%20dos%20Pinhais%20-%20PR%2C%2083085-290!5e0!3m2!1spt-BR!2sbr!4v1699999999999"
+                  width="100%"
+                  height="100%"
+                  className="w-full h-full border-2 border-[rgba(121,92,0,0.65)] rounded-2xl"
+                  allowFullScreen
+                  loading="lazy"
+                ></iframe>
+              </div>
               <br />
               <strong>Endereço:</strong> Chácara Lagos Italy<br />
               Rua - R. Júlio César Setenareski, 2493 - Mergulhão, São José dos Pinhais - PR, 83085-290
             </p>
           </div>
         </div>
-
-        <div className="text-center">
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="bg-[rgba(0,0,0,0.15)] hover:bg-[rgba(0,0,0,0.25)] font-bold py-3 sm:py-4 px-6 sm:px-8 text-lg sm:text-xl rounded-lg quest-border animate-quest-glow font-sans"
-          >
-            ⚔️ Aceitar Missão
-          </button>
-        </div>
-
-        {isModalOpen && (
-          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
-            <div className="parchment-bg quest-border rounded-lg p-6 max-w-md w-full mx-4 relative">
-              <button
-                onClick={() => setIsModalOpen(false)}
-                className="absolute top-2 right-2 text-gray-700 hover:text-red-600 text-xl"
-              >
-                ✖
-              </button>
-
-              <h2 className="text-xl sm:text-2xl font-serif quest-title text-center mb-4">
-                Confirmação de Presença
-              </h2>
-
-              <form onSubmit={handleFormSubmit} className="space-y-4">
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block readable-text font-sans mb-1"
-                  >
-                    Nome do Aventureiro *
-                  </label>
-                  <input
-                    id="name"
-                    type="text"
-                    placeholder="Digite seu nome"
-                    value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
-                    className="w-full p-2 border border-quest-gold rounded"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block readable-text font-sans mb-1"
-                  >
-                    E-mail *
-                  </label>
-                  <input
-                    id="email"
-                    type="email"
-                    placeholder="Digite seu e-mail"
-                    value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                    className="w-full p-2 border border-quest-gold rounded"
-                    required
-                  />
-                </div>
-
-                <div className="flex items-center space-x-2">
-                  <input
-                    id="attending"
-                    type="checkbox"
-                    checked={formData.attending}
-                    onChange={(e) =>
-                      setFormData({ ...formData, attending: e.target.checked })
-                    }
-                    className="w-5 h-5 border-quest-gold rounded"
-                  />
-                  <label
-                    htmlFor="attending"
-                    className="readable-text font-sans"
-                  >
-                    Vou comparecer
-                  </label>
-                </div>
-
-                <div className="flex gap-4 pt-4">
-                  <button
-                    type="button"
-                    onClick={() => setIsModalOpen(false)}
-                    className="flex-1 border border-quest-gold rounded py-2 readable-text"
-                  >
-                    Cancelar
-                  </button>
-                  <button
-                    type="submit"
-                    className="flex-1 bg-quest-green hover:bg-quest-green/90 rounded py-2"
-                  >
-                    Confirmar Presença
-                  </button>
-                </div>
-              </form>
-
-              {status && (
-                <p className="mt-4 text-center readable-text font-sans">
-                  {status}
-                </p>
-              )}
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );

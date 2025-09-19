@@ -2,13 +2,17 @@ import './styles/Nav.css';
 import { useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 
+interface NavProps {
+  openModal: () => void;
+}
+
 const navItems = [
   { label: "Início", href: "/" },
   { label: "Informações", href: "/informations" },
   { label: "Presentes", href: "/merchant" }
 ];
 
-function Nav() {
+function Nav({ openModal }: NavProps) {
   const activeRef = useRef<HTMLLIElement>(null);
   const itemRefs = useRef<HTMLLIElement[]>([]);
   const location = useLocation();
@@ -30,8 +34,7 @@ function Nav() {
           {navItems.map((item, index) => (
             <li
               key={item.label}
-              className="hover:text-red-700"
-              style={{fontFamily: "serif"}}
+              style={{ fontFamily: "serif" }}
               ref={(el) => {
                 if (el) itemRefs.current[index] = el;
               }}
@@ -39,6 +42,14 @@ function Nav() {
               <Link to={item.href}>{item.label}</Link>
             </li>
           ))}
+          <li>
+            <button
+              onClick={openModal}
+              style={{ fontFamily: "serif" }}
+            >
+              Confirmar Presença
+            </button>
+          </li>
         </ul>
       </nav>
     </div>
