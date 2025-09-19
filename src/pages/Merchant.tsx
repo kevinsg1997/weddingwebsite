@@ -18,10 +18,6 @@ export default function Merchant() {
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState<string | null>(null);
   const [isLoadingItems, setIsLoadingItems] = useState<boolean>(true);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [guestName, setGuestName] = useState('');
-  const [guestEmail, setGuestEmail] = useState('');
-  const [selectedItem, setSelectedItem] = useState<Item | null>(null);
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -37,9 +33,30 @@ export default function Merchant() {
     };
 
     fetchItems();
+
+    const eventSource = new EventSource("https://weddingwebsiteapi-production.up.railway.app/api/payment/paymentWebhook");
+
+    eventSource.onmessage = (event) => {
+      const updatedItem = JSON.parse(event.data);
+      setItems((prevItems) =>
+        prevItems.map((item) =>
+          item.id === updatedItem.id ? { ...item, available: false, buyer: updatedItem.buyer } : item
+        )
+      );
+    };
+
+    eventSource.onerror = (err) => {
+      console.error("EventSource failed:", err);
+      eventSource.close();
+    };
+
+    return () => {
+      eventSource.close();
+    };
   }, []);
 
   const handleBuy = async (item: Item) => {
+
     try {
       setLoading(item.id);
 
@@ -50,6 +67,7 @@ export default function Merchant() {
           title: item.name,
           price: item.price,
           quantity: 1,
+          ItemId: item.id,
         }),
       });
 
@@ -59,7 +77,7 @@ export default function Merchant() {
         window.location.href = data.init_point;
       }
     } catch (err) {
-      console.error("Erro ao iniciar compra", err);
+      console.error("Erro ao processar a compra", err);
     } finally {
       setLoading(null);
     }
@@ -74,6 +92,9 @@ export default function Merchant() {
           </h1>
           <p className="text-lg sm:text-xl mb-4 sm:mb-6">
             Ajude Kevin & Pâmela a reunir itens essenciais para sua nova aventura
+          </p>
+          <p className="text-sm sm:text-sm mb-4 sm:mb-6">
+            Uma dica, se desejar que seu nome apareça no item que você presentear, realize o login no MercadoPago antes de abrir o link do presente.
           </p>
 
           {isLoadingItems ? (
@@ -114,10 +135,7 @@ export default function Merchant() {
                             <p>R${item.price},00</p>
                           </span>
                           <button
-                            onClick={() => {
-                              setSelectedItem(item);
-                              setModalOpen(true);
-                            }}
+                            onClick={() => handleBuy(item)}
                             disabled={loading === item.id}
                             className="purchase-button w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition disabled:bg-gray-400"
                           >
@@ -126,7 +144,11 @@ export default function Merchant() {
                         </>
                       ) : (
                         <span className="px-3 py-2 rounded-lg text-sm sm:text-base w-full text-center text-white bg-gray-600">
-                          Já presenteado por: <strong>{item.buyer || "Convidado(a)"}</strong>
+                          {item.buyer?.trim() ? (
+                            <>Já presenteado por: <strong>{item.buyer}</strong></>
+                          ) : (
+                            <>Já presenteado</>
+                          )}
                         </span>
                       )}
                     </div>
@@ -137,73 +159,6 @@ export default function Merchant() {
           )}
         </div>
       </div>
-
-      {modalOpen && selectedItem && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-black rounded-lg p-6 w-full max-w-md">
-            <h2 className="text-xl font-bold mb-4">Deseja sinalizar os noivos?</h2>
-            <p className="mb-4">Informe seu nome e e-mail para que possamos notificar os noivos sobre sua compra.</p>
-
-            <input
-              type="text"
-              placeholder="Seu nome"
-              value={guestName}
-              onChange={(e) => setGuestName(e.target.value)}
-              className="w-full mb-3 p-2 border rounded"
-            />
-            <input
-              type="email"
-              placeholder="Seu e-mail"
-              value={guestEmail}
-              onChange={(e) => setGuestEmail(e.target.value)}
-              className="w-full mb-4 p-2 border rounded"
-            />
-
-            <div className="flex justify-end gap-2">
-              <button
-                onClick={() => setModalOpen(false)}
-                className="px-4 py-2 rounded bg-gray-300"
-              >
-                Cancelar
-              </button>
-              <button
-                onClick={async () => {
-                  if (!guestName || !guestEmail) {
-                    alert("Preencha nome e e-mail!");
-                    return;
-                  }
-
-                  try {
-                    await fetch("https://weddingwebsiteapi-production.up.railway.app/api/payment/confirmPurchase", {
-                      method: "POST",
-                      headers: { "Content-Type": "application/json" },
-                      body: JSON.stringify({
-                        Name: guestName,
-                        Email: guestEmail,
-                        Attending: false,
-                        ItemName: selectedItem.name
-                      }),
-                    });
-                  } catch (err) {
-                    console.error("Erro ao notificar os noivos", err);
-                  }
-
-                  if (selectedItem) {
-                    handleBuy(selectedItem);
-                  }
-
-                  setModalOpen(false);
-                  setGuestName('');
-                  setGuestEmail('');
-                }}
-                className="px-4 py-2 rounded bg-blue-500 text-white"
-              >
-                Confirmar e Comprar
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
