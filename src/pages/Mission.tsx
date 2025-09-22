@@ -240,7 +240,7 @@ export default function Mission() {
 
       {modalText && (
         <div className="fixed inset-0 flex items-center justify-center z-10">
-          <div className="bg-[rgba(255,247,224,1)] bg-opacity-90 p-8 rounded-xl shadow-2xl max-w-md w-full">
+          <div className="border-2 border-[rgba(105,79,0,1)] bg-[rgba(255,247,224,1)] bg-opacity-90 p-8 rounded-xl shadow-2xl max-w-md w-full">
             <div className="flex items-center gap-4 mb-6">
               <img 
                 src={getCharacterImage()} 
