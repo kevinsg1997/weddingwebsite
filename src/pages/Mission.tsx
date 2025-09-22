@@ -212,8 +212,8 @@ export default function Mission() {
       <div
         className="grid border-4 border-[rgba(105,79,0,1)]"
         style={{
-          gridTemplateRows: `repeat(${GRID_ROWS}, 50px)`,
-          gridTemplateColumns: `repeat(${GRID_COLS}, 50px)`,
+          gridTemplateRows: `repeat(${GRID_ROWS}, 25px)`,
+          gridTemplateColumns: `repeat(${GRID_COLS}, 25px)`,
           backgroundImage: 'url("/imgs/fundogame.png")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
