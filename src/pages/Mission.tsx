@@ -11,6 +11,7 @@ export default function Mission() {
   const [grid, setGrid] = useState<CellType[][]>([]);
   const [playerPos, setPlayerPos] = useState({ row: 0, col: 0 });
   const [modalText, setModalText] = useState<string | null>(null);
+  const [modalType, setModalType] = useState<string | null>(null);
   const [prevCell, setPrevCell] = useState<CellType>("grass");
 
   // Grid
@@ -51,7 +52,7 @@ export default function Mission() {
     }
     newGrid[playerPos.row][playerPos.col] = "player";
     setGrid(newGrid);
-  }, []);
+  }, [playerPos]);
 
   // Mover jogador
   const movePlayer = (newRow: number, newCol: number) => {
@@ -62,15 +63,6 @@ export default function Mission() {
       newCol >= GRID_COLS
     )
       return;
-
-    if (grid[newRow][newCol] === ("interact" as CellType) ||
-        grid[newRow][newCol] === ("nun" as CellType) ||
-        grid[newRow][newCol] === ("charioteer" as CellType) ||
-        grid[newRow][newCol] === ("kepam" as CellType) ||
-        grid[newRow][newCol] === ("merchant" as CellType)) {
-      setModalText(`Você interagiu com o objeto em (${newRow}, ${newCol})`);
-      return;
-    }
 
     if (grid[newRow][newCol] === "grass") {
       const updatedGrid = grid.map((row) => [...row]);
@@ -88,12 +80,118 @@ export default function Mission() {
   const handleCellClick = (r: number, c: number) => {
     const isAdjacent =
       Math.abs(r - playerPos.row) + Math.abs(c - playerPos.col) === 1;
-    
-      if (isAdjacent && grid[r][c] !== "block" && grid[r][c] !== "interact") {
-        movePlayer(r, c);
-      } else if (grid[r][c] === "interact") {
-        setModalText(`Você interagiu com o objeto em (${r}, ${c})`);
-      }
+
+    if (isAdjacent && grid[r][c] !== "block" && grid[r][c] !== "interact") {
+      movePlayer(r, c);
+    } else if (grid[r][c] === "interact") {
+      setModalText(`Você interagiu com o objeto em (${r}, ${c})`);
+    }
+
+    if (grid[r][c] === "merchant") {
+      setModalText("Venha e veja os itens que você pode comprar para ajudar na aventura do casal!");
+      setModalType("merchant");
+    } else if (grid[r][c] === "nun") {
+      setModalText("Olá, que bom ver você por aqui! O casal aparentou muito feliz com sua presença. Indico falar com o mercador e com o coucheiro assim que puder! Agora venha aqui, deixe-me abençoar sua jornada.");
+      setModalType("nun");
+    } else if (grid[r][c] === "kepam") {
+      setModalText("Não acredito que está por aqui! Ficamos tão felizes que tenha realmente vindo nos visitar, temos uma aventura muito importante pela frente e sua ajuda será essencial. Por favor, fale com a freira para poder receber uma benção e ter mais segurança no caminho.");
+      setModalType("kepam");
+    } else if (grid[r][c] === "charioteer") {
+      setModalText("Olá, aventureiro! Sou o cocheiro desta cidade. Ouvi dizer que você está ajudando o Kevin e a Pâmela em uma aventura importante. Se precisar de transporte ou informações sobre a região, estou à disposição. Gostaria de saber mais sobre a missão?");
+      setModalType("charioteer");
+    }
+  };
+
+  const closeModal = () => {
+    setModalText(null);
+    setModalType(null);
+  };
+
+  const handleMerchantResponse = (response: "yes" | "no") => {
+    if (response === "yes") {
+      window.open("/merchant", "_blank");
+    }
+    closeModal();
+  };
+
+  const handleCharioteerResponse = (response: "yes" | "no") => {
+    if (response === "yes") {
+      window.open("/informations", "_blank");
+    }
+    closeModal();
+  };
+
+  const getCharacterImage = () => {
+    switch (modalType) {
+      case "merchant":
+        return "/imgs/merchant.png";
+      case "nun":
+        return "/imgs/nun.png";
+      case "kepam":
+        return "/imgs/kepam.png";
+      case "charioteer":
+        return "/imgs/charioteer.png";
+      default:
+        return "";
+    }
+  };
+
+  const renderModalButtons = () => {
+    switch (modalType) {
+      case "merchant":
+        return (
+          <>
+            <button
+              onClick={() => handleMerchantResponse("yes")}
+              className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+            >
+              Sim
+            </button>
+            <button
+              onClick={() => handleMerchantResponse("no")}
+              className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+            >
+              Não
+            </button>
+          </>
+        );
+      case "nun":
+      case "kepam":
+        return (
+          <button
+            onClick={closeModal}
+            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          >
+            Ok
+          </button>
+        );
+      case "charioteer":
+        return (
+          <>
+            <button
+              onClick={() => handleCharioteerResponse("yes")}
+              className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+            >
+              Sim
+            </button>
+            <button
+              onClick={() => handleCharioteerResponse("no")}
+              className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+            >
+              Não
+            </button>
+          </>
+        );
+      default:
+        return (
+          <button
+            onClick={closeModal}
+            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          >
+            Fechar
+          </button>
+        );
+    }
   };
 
   const isAdjacentToPlayer = (r: number, c: number) => {
@@ -108,8 +206,11 @@ export default function Mission() {
         em direção ao centro, você nota algumas pessoas interessantes, cada uma com sua própria história 
         para contar. O aroma das flores e o som suave das folhas ao vento tornam a caminhada ainda mais agradável.
       </p>
+      <p className="pb-[20px] text-base md:text-sm">
+        *Para andar clique ou toque nos quadrados adjacentes ao seu personagem que estão destacados com uma luz amarela.
+      </p>
       <div
-        className="grid"
+        className="grid border-4 border-[rgba(105,79,0,1)]"
         style={{
           gridTemplateRows: `repeat(${GRID_ROWS}, 50px)`,
           gridTemplateColumns: `repeat(${GRID_COLS}, 50px)`,
@@ -138,15 +239,17 @@ export default function Mission() {
       </div>
 
       {modalText && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70">
-          <div className="bg-white p-6 rounded shadow-lg max-w-sm">
-            <p className="mb-4">{modalText}</p>
-            <button
-              onClick={() => setModalText(null)}
-              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-            >
-              Fechar
-            </button>
+        <div className="fixed inset-0 flex items-center justify-center z-10">
+          <div className="bg-[rgba(255,247,224,1)] bg-opacity-90 p-8 rounded-xl shadow-2xl max-w-md w-full">
+            <div className="flex items-center gap-4 mb-6">
+              <img 
+                src={getCharacterImage()} 
+                alt={modalType || 'Imagem do personagem'}
+                className="w-40 h-40 rounded-full object-cover"
+              />
+              <p className="text-sm">{modalText}</p>
+            </div>
+            <div className="flex gap-4 justify-end">{renderModalButtons()}</div>
           </div>
         </div>
       )}
