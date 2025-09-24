@@ -2,7 +2,7 @@ import '../styles/mission.css';
 import { useState, useEffect } from "react";
 
 type CellType = "grass" | "block" | "interact" |
-                "player" | "nun" | "charioteer" | "kepam" | "merchant" ;
+                "player" | "nun" | "charioteer" | "kepam" | "merchant";
 
 const GRID_ROWS = 16;
 const GRID_COLS = 16;
@@ -14,7 +14,28 @@ export default function Mission() {
   const [modalType, setModalType] = useState<string | null>(null);
   const [prevCell, setPrevCell] = useState<CellType>("grass");
 
-  // Grid
+  // ✅ Novo estado para o tamanho das células
+  const [cellSize, setCellSize] = useState(25);
+
+  // ✅ Verifica tamanho da tela e ajusta cellSize dinamicamente
+  useEffect(() => {
+    const updateCellSize = () => {
+      const width = window.innerWidth;
+
+      if (width >= 1024) { // lg breakpoint
+        setCellSize(40);
+      } else {
+        setCellSize(25);
+      }
+    };
+
+    updateCellSize(); // define no carregamento
+    window.addEventListener("resize", updateCellSize);
+
+    return () => window.removeEventListener("resize", updateCellSize);
+  }, []);
+
+  // Criação do grid
   useEffect(() => {
     const newGrid: CellType[][] = [];
     for (let r = 0; r < GRID_ROWS; r++) {
@@ -54,7 +75,7 @@ export default function Mission() {
     setGrid(newGrid);
   }, [playerPos]);
 
-  // Mover jogador
+  // Movimentação do jogador
   const movePlayer = (newRow: number, newCol: number) => {
     if (
       newRow < 0 ||
@@ -71,10 +92,7 @@ export default function Mission() {
       updatedGrid[newRow][newCol] = "player";
       setGrid(updatedGrid);
       setPlayerPos({ row: newRow, col: newCol });
-    }
-
-    else
-      return;
+    } else return;
   };
 
   const handleCellClick = (r: number, c: number) => {
@@ -83,20 +101,25 @@ export default function Mission() {
 
     if (isAdjacent && grid[r][c] !== "block" && grid[r][c] !== "interact") {
       movePlayer(r, c);
+      playSound("/sounds/passos.mp3");
     } else if (grid[r][c] === "interact") {
       setModalText(`Você interagiu com o objeto em (${r}, ${c})`);
     }
 
     if (grid[r][c] === "merchant") {
+      playSound("/sounds/merchant.mp3");
       setModalText("Venha e veja os itens que você pode comprar para ajudar na aventura do casal!");
       setModalType("merchant");
     } else if (grid[r][c] === "nun") {
+      playSound("/sounds/nun-voice.mp3");
       setModalText("Olá, que bom ver você por aqui! O casal aparentou muito feliz com sua presença. Indico falar com o mercador e com o coucheiro assim que puder! Agora venha aqui, deixe-me abençoar sua jornada.");
       setModalType("nun");
     } else if (grid[r][c] === "kepam") {
+      playSound("/sounds/kepam-voice.mp3");
       setModalText("Não acredito que está por aqui! Ficamos tão felizes que tenha realmente vindo nos visitar, temos uma aventura muito importante pela frente e sua ajuda será essencial. Por favor, fale com a freira para poder receber uma benção e ter mais segurança no caminho.");
       setModalType("kepam");
     } else if (grid[r][c] === "charioteer") {
+      playSound("/sounds/hello.mp3");
       setModalText("Olá, aventureiro! Sou o cocheiro desta cidade. Ouvi dizer que você está ajudando o Kevin e a Pâmela em uma aventura importante. Se precisar de transporte ou informações sobre a região, estou à disposição. Gostaria de saber mais sobre a missão?");
       setModalType("charioteer");
     }
@@ -194,6 +217,11 @@ export default function Mission() {
     }
   };
 
+  const playSound = (src: string) => {
+  const sound = new Audio(src);
+  sound.play();
+  };
+
   const isAdjacentToPlayer = (r: number, c: number) => {
     return Math.abs(r - playerPos.row) + Math.abs(c - playerPos.col) === 1;
   };
@@ -201,19 +229,30 @@ export default function Mission() {
   return (
     <div className="flex flex-col items-center min-h-screen p-4 sm:p-6 lg:p-8">
       <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif quest-title mb-4">Cidade da folha</h1>
+      
       <p className="pb-[20px] text-base md:text-lg text-justify">
         Você chega à Cidade da Folha, um lugar tranquilo e encantador. As ruas são calmas, e ao caminhar 
         em direção ao centro, você nota algumas pessoas interessantes, cada uma com sua própria história 
         para contar. O aroma das flores e o som suave das folhas ao vento tornam a caminhada ainda mais agradável.
       </p>
+
       <p className="pb-[20px] text-base md:text-sm">
         *Para andar clique ou toque nos quadrados adjacentes ao seu personagem que estão destacados com uma luz amarela.
       </p>
+
+      <p className="text-sm">Aperte o play e entre no clima! ^^</p>
+      <audio
+        src="/sounds/background.mp3"
+        loop
+        controls
+        className="h-6 mb-4"
+      />
+
       <div
         className="grid border-4 border-[rgba(105,79,0,1)]"
         style={{
-          gridTemplateRows: `repeat(${GRID_ROWS}, 25px)`,
-          gridTemplateColumns: `repeat(${GRID_COLS}, 25px)`,
+          gridTemplateRows: `repeat(${GRID_ROWS}, ${cellSize}px)`,
+          gridTemplateColumns: `repeat(${GRID_COLS}, ${cellSize}px)`,
           backgroundImage: 'url("/imgs/fundogame.png")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',

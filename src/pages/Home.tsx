@@ -24,10 +24,11 @@ export default function Home() {
           alt="Mago"
         />
         <div className="flex-1 md:text-left flex flex-col">
-  <h1 className="sm:pt-[20px] text-3xl sm:text-4xl lg:text-5xl font-serif quest-title mb-4">
+  <h1 className="sm:pt-[20px] text-3xl sm:text-4xl lg:text-5xl font-serif quest-title mb-4 text-[rgba(74,88,37,1)]">
     Merlin, o mago:
   </h1>
   <p className="pb-[20px] text-base md:text-lg text-justify">
+    YOU SHALL NOT... Ah espera, fala errada.<br/>
     Eu costumava ser um aventureiro como você, até que tomei uma flechada no joelho.<br/>
     Em meus sonhos, vi você chegando a um lugar especial, onde um casal cheio de amor parecia precisar da sua ajuda.  
     Eles sorriram ao te ver, e algo me diz que sua presença fará toda a diferença.<br/>
@@ -35,11 +36,11 @@ export default function Home() {
   </p>
   <button
     onClick={() => navigate('/mission')}
-    className="self-end group relative inline-flex h-14 items-center justify-center rounded-full bg-neutral-950 py-1 pl-6 pr-14 font-medium text-neutral-50 overflow-hidden"
+    className="self-end group relative inline-flex h-14 items-center justify-center rounded-full bg-[rgba(165,121,0,0.65)] py-1 pl-6 pr-14 overflow-hidden"
   >
     <span className="z-10 pr-2">Seguir o caminho que o mago indicou</span>
 
-    <div className="absolute right-1 inline-flex h-12 w-12 items-center justify-end rounded-full bg-neutral-700 transition-[width] group-hover:w-[calc(100%-8px)]">
+    <div className="absolute right-1 inline-flex h-12 w-12 items-center justify-end rounded-full bg-[rgba(165,121,0,0.65)] transition-[width] group-hover:w-[calc(100%-8px)]">
       <div className="mr-3.5 flex items-center justify-center">
         <svg
           width="15"

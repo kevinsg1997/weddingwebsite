@@ -14,13 +14,13 @@ body {
   font-family: serif;
   font-weight: bold;
 }
-
+/* 
 ul {
   position: relative;
   display: flex;
   justify-content: left;
   gap: 1rem;
-}
+} */
 
 ul li a {
   color: rgb(0, 0, 0);

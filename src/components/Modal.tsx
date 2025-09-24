@@ -75,6 +75,8 @@ const Modal: React.FC<ModalProps> = ({ closeModal }) => {
         <h2 className="text-xl sm:text-2xl font-serif quest-title text-center mb-4">
           Confirmação de Presença
         </h2>
+        <p>*Caso seja mais de uma pessoa, enviar os dados de cada um.<br/>
+        </p>
         <form className="space-y-4" onSubmit={handleFormSubmit}>
           <div>
             <label htmlFor="Name" className="block readable-text font-sans mb-1">
