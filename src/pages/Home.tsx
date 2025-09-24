@@ -19,7 +19,7 @@ export default function Home() {
       </div>
       <div className="flex flex-col md:flex-row items-center md:items-start p-4 gap-4">
         <img
-          className="w-1/4 h-1/4 md:w-1/5 md:h-1/5 rounded-full object-cover"
+          className="w-1/2 h-1/2 md:w-1/5 md:h-1/5 rounded-full object-cover"
           src="/imgs/mage.png"
           alt="Mago"
         />
@@ -27,7 +27,7 @@ export default function Home() {
   <h1 className="sm:pt-[20px] text-3xl sm:text-4xl lg:text-5xl font-serif quest-title mb-4">
     Merlin, o mago:
   </h1>
-  <p className="pb-[20px] text-base md:text-lg">
+  <p className="pb-[20px] text-base md:text-lg text-justify">
     Eu costumava ser um aventureiro como você, até que tomei uma flechada no joelho.<br/>
     Em meus sonhos, vi você chegando a um lugar especial, onde um casal cheio de amor parecia precisar da sua ajuda.  
     Eles sorriram ao te ver, e algo me diz que sua presença fará toda a diferença.<br/>

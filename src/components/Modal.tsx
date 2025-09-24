@@ -125,12 +125,19 @@ const Modal: React.FC<ModalProps> = ({ closeModal }) => {
             </button>
             <button 
               type="submit"
-              className="flex-1 bg-quest-green hover:bg-quest-green/90 rounded py-2"
-            >
+              className="flex-1 bg-quest-green hover:bg-quest-green/90 rounded py-2">
               Confirmar Presença
             </button>
           </div>
           {status && <p className="text-center mt-4 font-semibold">{status}</p>}
+          <p>*Se desejar levar um acompanhante que não tenha recebido convite, sinalizar os noivos no número:<br/>
+            <a
+              href="https://wa.me/5541997636832"
+              target="_blank"
+              rel="noopener noreferrer">
+              (41) 99763-6832
+            </a>
+          </p>
         </form>
       </div>
     </div>

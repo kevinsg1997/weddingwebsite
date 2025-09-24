@@ -83,7 +83,7 @@ const Info: React.FC = () => {
             <h3 className="text-xl sm:text-2xl font-bold quest-title font-serif mb-4">
               📅 Data e Hora da Missão
             </h3>
-            <p className="readable-text font-sans text-sm sm:text-base lg:text-lg">
+            <p className="readable-text font-sans text-sm sm:text-base lg:text-lg text-justify">
               <strong>Data:</strong> 28 de Fevereiro de 2026<br />
               <strong>Hora:</strong> 16:00<br />
               <strong>Duração:</strong> Até a missão estar completa.
@@ -94,11 +94,17 @@ const Info: React.FC = () => {
             <h3 className="text-xl sm:text-2xl font-bold quest-title font-serif mb-4">
               👗 Traje da Missão
             </h3>
-            <p className="readable-text font-sans text-sm sm:text-base lg:text-lg">
+            <p className="readable-text font-sans text-sm sm:text-base lg:text-lg text-justify">
               <strong>Código de Vestimenta:</strong> Social/Semi-formal<br />
-              <strong>Cores:</strong> Qualquer cor exceto branco ou cores das paletas de madinhas e padrinhos.<br />
-              <strong>Especial:</strong> Fique à vontade para adicionar acessórios de fantasia! Seja criativo e venha se divertir conosco!
+              <strong>Cores:</strong> Qualquer cor exceto branco ou cores das paletas de madrinhas e padrinhos.
             </p>
+          </div>
+
+          <div className="parchment-bg p-4 sm:p-6 rounded-lg quest-border">
+            <h3 className="text-xl sm:text-2xl font-bold quest-title font-serif mb-4">
+              🎨 Paleta de cores Madrinhas e Padrinhos
+            </h3>
+            <img></img>
           </div>
         </div>
 

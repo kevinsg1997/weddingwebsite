@@ -28,7 +28,7 @@ function Nav({ openModal }: NavProps) {
 
   return (
     <div className="relative top-0 w-screen z-50 max-h-[10%] max-w-full">
-      <nav className="">
+      <nav className="bg-[rgba(161,124,0,0.65)] backdrop-blur-md border-b border-gray-200 shadow-md rounded-b-2xl">
         <ul className="flex flex-wrap justify-self-center gap-4 p-4">
           <li ref={activeRef} className="active"></li>
           {navItems.map((item, index) => (
