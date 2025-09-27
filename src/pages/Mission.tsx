@@ -95,13 +95,25 @@ export default function Mission() {
     } else return;
   };
 
+  const stepingAudio = [
+  "/sounds/step1.mp3",
+  "/sounds/step2.mp3",
+  "/sounds/step3.mp3"
+  ];
+
+  const playStepAudio = () => {
+  const miscAudio = stepingAudio[Math.floor(Math.random() * stepingAudio.length)];
+  const audio = new Audio(miscAudio);
+  audio.play();
+  };
+
   const handleCellClick = (r: number, c: number) => {
     const isAdjacent =
       Math.abs(r - playerPos.row) + Math.abs(c - playerPos.col) === 1;
 
     if (isAdjacent && grid[r][c] !== "block" && grid[r][c] !== "interact") {
       movePlayer(r, c);
-      playSound("/sounds/passos.mp3");
+      playStepAudio();
     } else if (grid[r][c] === "interact") {
       setModalText(`Você interagiu com o objeto em (${r}, ${c})`);
     }
@@ -115,7 +127,9 @@ export default function Mission() {
       setModalText("Olá, que bom ver você por aqui! O casal aparentou muito feliz com sua presença. Indico falar com o mercador e com o coucheiro assim que puder! Agora venha aqui, deixe-me abençoar sua jornada.");
       setModalType("nun");
     } else if (grid[r][c] === "kepam") {
-      playSound("/sounds/kepam-voice.mp3");
+      playSound("/sounds/hello-p.mp3", () => {
+        playSound("/sounds/hello-k.mp3");
+      });
       setModalText("Não acredito que está por aqui! Ficamos tão felizes que tenha realmente vindo nos visitar, temos uma aventura muito importante pela frente e sua ajuda será essencial. Por favor, fale com a freira para poder receber uma benção e ter mais segurança no caminho.");
       setModalType("kepam");
     } else if (grid[r][c] === "charioteer") {
@@ -217,10 +231,13 @@ export default function Mission() {
     }
   };
 
-  const playSound = (src: string) => {
+const playSound = (src: string, onEndedCallback?: () => void) => {
   const sound = new Audio(src);
   sound.play();
-  };
+  if (onEndedCallback) {
+    sound.onended = onEndedCallback;
+  }
+};
 
   const isAdjacentToPlayer = (r: number, c: number) => {
     return Math.abs(r - playerPos.row) + Math.abs(c - playerPos.col) === 1;
@@ -267,7 +284,7 @@ export default function Mission() {
                 backgroundImage: cell === "player" 
                   ? 'url("/imgs/aventureiro.png")'
                   : isAdjacentToPlayer(r, c) && cell !== "block"
-                  ? 'url("/imgs/click.png")' 
+                  ? 'url("/imgs/click.gif")' 
                   : "",
                 backgroundSize: "cover",
                 backgroundPosition: "center",

@@ -125,6 +125,9 @@ const Info: React.FC = () => {
           </h3>
           <div className="bg-quest-stone-light rounded-lg p-4 min-h-48 sm:min-h-64 flex items-center justify-center">
             <p className="readable-text font-sans text-sm sm:text-base lg:text-lg text-center">
+              <strong>Endereço:</strong> Chácara Lagos Italy<br />
+              Rua - R. Júlio César Setenareski, 2493 - Mergulhão, São José dos Pinhais - PR, 83085-290
+              <br />
               <div className="rounded-2xl shadow-lg overflow-hidden w-full h-[400px]">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3583.513329909012!2d-49.1202727!3d-25.5634597!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dcfbaae5ac8ee7%3A0x1b5afdeee19c68e7!2sR.%20J%C3%BAlio%20C%C3%A9sar%20Setenareski%2C%202493%20-%20Mergulh%C3%A3o%2C%20S%C3%A3o%20Jos%C3%A9%20dos%20Pinhais%20-%20PR%2C%2083085-290!5e0!3m2!1spt-BR!2sbr!4v1699999999999"
@@ -135,9 +138,6 @@ const Info: React.FC = () => {
                   loading="lazy"
                 ></iframe>
               </div>
-              <br />
-              <strong>Endereço:</strong> Chácara Lagos Italy<br />
-              Rua - R. Júlio César Setenareski, 2493 - Mergulhão, São José dos Pinhais - PR, 83085-290
             </p>
           </div>
         </div>
