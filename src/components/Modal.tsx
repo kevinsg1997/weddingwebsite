@@ -80,7 +80,7 @@ const Modal: React.FC<ModalProps> = ({ closeModal }) => {
         <form className="space-y-4" onSubmit={handleFormSubmit}>
           <div>
             <label htmlFor="Name" className="block readable-text font-sans mb-1">
-              Nome do Aventureiro *
+              Nome completo do Aventureiro *
             </label>
             <input
               id="Name"
