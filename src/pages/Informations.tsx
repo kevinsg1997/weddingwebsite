@@ -9,7 +9,7 @@ const Info: React.FC = () => {
     seconds: 0,
   });
 
-  const weddingDate = new Date("2026-02-28T16:00:00").getTime();
+  const weddingDate = new Date("2026-02-28T16:30:00").getTime();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -85,7 +85,7 @@ const Info: React.FC = () => {
             </h3>
             <p className="readable-text font-sans text-sm sm:text-base lg:text-lg text-justify">
               <strong>Data:</strong> 28 de Fevereiro de 2026<br />
-              <strong>Hora:</strong> 16:00<br />
+              <strong>Hora:</strong> 16:30<br />
               <strong>Duração:</strong> Até a missão estar completa.
             </p>
           </div>
