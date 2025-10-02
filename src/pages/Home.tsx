@@ -53,42 +53,32 @@ export default function Home() {
           Kevin e Pâmela
         </h1>
 
-        <div className="relative w-full max-w-3xl h-[300px] sm:h-[400px] overflow-hidden rounded-xl shadow-md mb-6">
+        <div className="relative w-full max-w-3xl aspect-[16/9] overflow-hidden rounded-xl shadow-md mb-6">
           <img
             src={imageList[current]}
             alt={`Imagem ${current + 1}`}
-            className="w-full h-full object-cover transition duration-700 ease-in-out"
+            className="absolute inset-0 w-full h-full object-cover transition duration-1000"
           />
 
           <button
             onClick={goToPrev}
-            className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-70 hover:bg-opacity-100 rounded-full p-2"
+            className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-[rgba(255,255,255,0.25)] hover:bg-white rounded-full p-2"
           >
             ◀
           </button>
           <button
             onClick={goToNext}
-            className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white bg-opacity-70 hover:bg-opacity-100 rounded-full p-2"
+            className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-[rgba(255,255,255,0.25)] hover:bg-white rounded-full p-2"
           >
             ▶
           </button>
-
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
-            {imageList.map((_, index) => (
-              <div
-                key={index}
-                className={`w-3 h-3 rounded-full ${index === current ? 'bg-yellow-600' : 'bg-white'} opacity-80`}
-              ></div>
-            ))}
-          </div>
         </div>
 
         <h2>Você se aproxima de um senhor com uma aparência amigável, está utilizando uma bengala e um chapéu um tanto diferente.<br/>
-          Ao notar sua presença, ele sorri e diz:<br/>
+          Ao notar sua presença, ele sorri e diz:
         </h2>
-        <br />
       </div>
-      <div className="flex flex-col items-center p-4 gap-4">
+      <div className="flex flex-col items-center mt-4 p-4 gap-4">
         <img
           className="w-1/2 h-1/2 md:w-1/5 md:h-1/5 rounded-full object-cover scale-110"
           src="/imgs/mage.gif"
