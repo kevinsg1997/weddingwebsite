@@ -86,6 +86,7 @@ export default function Home() {
         <h2>Você se aproxima de um senhor com uma aparência amigável, está utilizando uma bengala e um chapéu um tanto diferente.<br/>
           Ao notar sua presença, ele sorri e diz:<br/>
         </h2>
+        <br />
       </div>
       <div className="flex flex-col items-center p-4 gap-4">
         <img
