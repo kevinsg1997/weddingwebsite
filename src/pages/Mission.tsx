@@ -161,13 +161,13 @@ export default function Mission() {
   const getCharacterImage = () => {
     switch (modalType) {
       case "merchant":
-        return "/imgs/merchant.png";
+        return "/imgs/adventure/merchant.png";
       case "nun":
-        return "/imgs/nun.png";
+        return "/imgs/adventure/nun.png";
       case "kepam":
-        return "/imgs/kepam.png";
+        return "/imgs/adventure/kepam.png";
       case "charioteer":
-        return "/imgs/charioteer.png";
+        return "/imgs/adventure/charioteer.png";
       default:
         return "";
     }
@@ -294,7 +294,7 @@ export default function Mission() {
         style={{
           gridTemplateRows: `repeat(${GRID_ROWS}, ${cellSize}px)`,
           gridTemplateColumns: `repeat(${GRID_COLS}, ${cellSize}px)`,
-          backgroundImage: 'url("/imgs/fundogame.png")',
+          backgroundImage: 'url("/imgs/adventure/fundogame.png")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -306,7 +306,7 @@ export default function Mission() {
               onClick={() => handleCellClick(r, c)}
               style={{
                 backgroundImage: cell === "player" 
-                  ? 'url("/imgs/aventureiro.png")'
+                  ? 'url("/imgs/adventure/aventureiro.png")'
                   : isAdjacentToPlayer(r, c) && cell !== "block"
                   ? 'url("/imgs/click.gif")' 
                   : "",
