@@ -46,7 +46,7 @@ const Info: React.FC = () => {
           </p>
         </div>
 
-        <div className="parchment-bg p-4 sm:p-6 lg:p-8 rounded-lg quest-border mb-6 sm:mb-8">
+        <div className="p-4 sm:p-6 lg:p-8 rounded-lg quest-border mb-6 sm:mb-8">
           <h2 className="text-2xl sm:text-3xl font-bold quest-title font-serif text-center mb-4 sm:mb-6 text-[rgba(74,88,37,1)]">
             ⏰ Tempo Até a Aventura Começar
           </h2>
@@ -78,9 +78,9 @@ const Info: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8">
-          <div className="parchment-bg p-4 sm:p-6 rounded-lg quest-border">
-            <h3 className="text-xl sm:text-2xl font-bold quest-title font-serif mb-4 text-[rgba(74,88,37,1)]">
+        <div className="grid md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8 p-4 sm:p-6 rounded-lg">
+          <div className="p-4 sm:p-6 rounded-lg bg-[rgba(0,0,0,0.15)]">
+            <h3 className="text-xl sm:text-2xl font-bold font-serif mb-4 text-[rgba(74,88,37,1)]">
               📅 Data e Hora da Missão
             </h3>
             <p className="readable-text font-sans text-sm sm:text-base lg:text-lg text-justify">
@@ -89,9 +89,9 @@ const Info: React.FC = () => {
               <strong>Duração:</strong> Até a missão estar completa.
             </p>
           </div>
-
-          <div className="parchment-bg p-4 sm:p-6 rounded-lg quest-border">
-            <h3 className="text-xl sm:text-2xl font-bold quest-title font-serif mb-4 text-[rgba(74,88,37,1)]">
+          
+          <div className="p-4 sm:p-6 rounded-lg bg-[rgba(0,0,0,0.15)]">
+            <h3 className="text-xl sm:text-2xl font-bold font-serif mb-4 text-[rgba(74,88,37,1)]">
               👗 Traje da Missão
             </h3>
             <p className="readable-text font-sans text-sm sm:text-base lg:text-lg text-justify">
@@ -101,8 +101,12 @@ const Info: React.FC = () => {
           </div>
         </div>
 
-        <div className="parchment-bg p-4 sm:p-6 flex flex-col items-center">
-          <h3 className="text-xl sm:text-2xl font-bold quest-title font-serif mb-4 text-[rgba(74,88,37,1)]">
+        <div className="flex flex-col items-center">
+          <hr className="my-8 border-t-2 border-[rgba(0,0,0,0.25)] w-1/4" />
+        </div>
+
+        <div className="p-4 sm:p-6 flex flex-col items-center rounded-lg">
+          <h3 className="text-xl sm:text-2xl font-bold font-serif mb-4 text-[rgba(74,88,37,1)]">
             🎨 Paleta de cores Madrinhas e Padrinhos
           </h3>
           <p className="readable-text font-sans text-sm sm:text-base lg:text-lg text-justify">Madrinhas</p>
@@ -119,11 +123,15 @@ const Info: React.FC = () => {
           />
         </div>
 
-        <div className="parchment-bg p-4 sm:p-6 rounded-lg quest-border mb-6 sm:mb-8">
-          <h3 className="text-xl sm:text-2xl font-bold quest-title font-serif mb-4 text-[rgba(74,88,37,1)]">
+        <div className="flex flex-col items-center">
+          <hr className="my-8 border-t-2 border-[rgba(0,0,0,0.25)] w-1/4" />
+        </div>
+
+        <div className="p-4 sm:p-6 rounded-lg mb-6 sm:mb-8">
+          <h3 className="text-xl sm:text-2xl font-bold font-serif mb-4 text-[rgba(74,88,37,1)]">
             🗺️ Local da Missão
           </h3>
-          <div className="bg-quest-stone-light rounded-lg p-4 min-h-48 sm:min-h-64 flex items-center justify-center">
+          <div className=" rounded-lg p-4 min-h-48 sm:min-h-64 flex items-center justify-center">
             <p className="readable-text font-sans text-sm sm:text-base lg:text-lg text-center">
               <strong>Endereço:</strong> Chácara Lagos Italy<br />
               Rua - R. Júlio César Setenareski, 2493 - Mergulhão, São José dos Pinhais - PR, 83085-290

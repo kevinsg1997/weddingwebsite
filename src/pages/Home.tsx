@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import '../styles/home.css';
 
 export default function Home() {
@@ -26,20 +26,23 @@ export default function Home() {
   ];
 
   const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState("right");
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % imageList.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [imageList.length]);
+  //deixei comentado caso eu queira usar o autoplay
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     goToNext();
+  //   }, 10000);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   const goToPrev = () => {
+    setDirection("left");
     setCurrent((prev) => (prev - 1 + imageList.length) % imageList.length);
   };
 
   const goToNext = () => {
+    setDirection("right");
     setCurrent((prev) => (prev + 1) % imageList.length);
   };
   
@@ -53,12 +56,19 @@ export default function Home() {
           Kevin e Pâmela
         </h1>
 
-        <div className="relative w-full max-w-3xl aspect-[16/9] overflow-hidden rounded-xl shadow-md mb-6">
-          <img
-            src={imageList[current]}
-            alt={`Imagem ${current + 1}`}
-            className="absolute inset-0 w-full h-full object-cover transition duration-1000"
-          />
+        <div className="border-2 border-[rgba(105,79,0,1)] relative w-full max-w-3xl aspect-[16/9] overflow-hidden rounded-xl shadow-md mb-6">
+          <div
+            key={current}
+            className={`absolute inset-0 w-full h-full transition-transform duration-1000 ${
+              direction === "right" ? "translate-x-0 animate-slideFromRight" : "translate-x-0 animate-slideFromLeft"
+            }`}
+          >
+            <img
+              src={imageList[current]}
+              alt={`Imagem ${current + 1}`}
+              className="w-full h-full object-cover"
+            />
+          </div>
 
           <button
             onClick={goToPrev}
@@ -80,7 +90,7 @@ export default function Home() {
       </div>
       <div className="flex flex-col items-center mt-4 p-4 gap-4">
         <img
-          className="w-1/2 h-1/2 md:w-1/5 md:h-1/5 rounded-full object-cover scale-110"
+          className="w-1/2 h-1/2 md:w-1/5 md:h-1/5 rounded-full object-cover scale-110 border-2 border-[rgba(105,79,0,1)]"
           src="/imgs/mage.gif"
           alt="Mago"
         />
@@ -89,7 +99,8 @@ export default function Home() {
           controls
           className="h-6 mb-4"
         />
-        <div className="flex-1 flex flex-col">
+      </div>
+      <div className="flex-1 flex flex-col">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif quest-title mb-4 text-[rgba(74,88,37,1)]">
             Merlin, o mago
           </h1>
@@ -102,7 +113,7 @@ export default function Home() {
           </p>
           <button
             onClick={() => navigate('/mission')}
-            className="self-end group relative inline-flex h-14 items-center justify-center rounded-full bg-[rgba(165,121,0,0.65)] py-1 pl-6 pr-14 overflow-hidden"
+            className="self-end group relative inline-flex h-14 items-center justify-center rounded-full bg-[rgba(165,121,0,0.65)] py-1 pl-6 pr-14 overflow-hidden border-2 border-[rgba(105,79,0,1)]"
           >
             <span className="z-10 pr-2">Seguir o caminho que o mago indicou</span>
 
@@ -127,7 +138,6 @@ export default function Home() {
             </div>
           </button>
         </div>
-      </div>
     </div>
   );
 }

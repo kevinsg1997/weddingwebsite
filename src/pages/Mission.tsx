@@ -308,7 +308,7 @@ export default function Mission() {
                 backgroundImage: cell === "player" 
                   ? 'url("/imgs/adventure/aventureiro.png")'
                   : isAdjacentToPlayer(r, c) && cell !== "block"
-                  ? 'url("/imgs/click.gif")' 
+                  ? 'url("/imgs/adventure/click.gif")' 
                   : "",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
