@@ -34,7 +34,7 @@ export default function Merchant() {
 
     fetchItems();
 
-    const eventSource = new EventSource("https://weddingwebsiteapi-production.up.railway.app/api/payment/paymentWebhook");
+    const eventSource = new EventSource("https://weddingwebsiteapi-production.up.railway.app/api/payment/events");
 
     eventSource.onmessage = (event) => {
       const updatedItem = JSON.parse(event.data);
