@@ -93,9 +93,6 @@ export default function Merchant() {
           <p className="text-lg sm:text-xl mb-4 sm:mb-6">
             Ajude Kevin & Pâmela a reunir itens essenciais para sua nova aventura
           </p>
-          <p className="text-sm sm:text-sm mb-4 sm:mb-6">
-            Uma dica, se desejar que seu nome apareça no item que você presentear, realize o login no MercadoPago antes de abrir o link do presente.
-          </p>
 
           {isLoadingItems ? (
             <p className="text-white">Carregando itens...</p>
