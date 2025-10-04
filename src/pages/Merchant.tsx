@@ -93,6 +93,9 @@ export default function Merchant() {
           <p className="text-lg sm:text-xl mb-4 sm:mb-6">
             Ajude Kevin & Pâmela a reunir itens essenciais para sua nova aventura
           </p>
+          <p className="text-sm mb-4 sm:mb-6">
+            *Por nossa loja você consegue realizar o pagamento via cartão de crédito, boleto ou pix, mas se deseja comprar por uma loja de sua preferência, entre em contato em nosso whatsapp.
+          </p>
 
           {isLoadingItems ? (
             <p className="text-white">Carregando itens...</p>
