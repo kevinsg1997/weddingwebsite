@@ -101,7 +101,7 @@ export default function Merchant() {
               {items.map((item) => (
                 <div
                   key={item.id}
-                  className="bg-gradient-to-tr from-[rgba(17,17,17,0.5)] via-[rgba(172,126,0,0.5)] to-[rgba(17,17,17,0.5)] 
+                  className="bg-gradient-to-tr from-[rgba(17,17,17,0.5)] via-[rgba(255,238,0,0.5)] to-[rgba(17,17,17,0.5)] 
                             border-2 border-[#ffbb00] rounded-xl hover:scale-105 transition-transform duration-300 cursor-pointer
                             group h-full flex flex-col"
                 >
@@ -112,13 +112,13 @@ export default function Merchant() {
                       className="w-full h-48 object-cover rounded-lg mb-4"
                     />
                     <h2
-                      className="text-lg sm:text-xl font-bold mb-0 text-[rgba(255,238,0,1)] bg-[rgba(255,238,0,0.25)] rounded-t-lg p-2"
-                      style={{ textShadow: '0 0 5px #0000006c', lineHeight: 1 }}
+                      className="text-lg sm:text-xl font-bold mb-0 text-[rgba(0,0,0,1)] bg-[rgba(255,255,255,0.25)] rounded-t-lg p-2"
+                      style={{ lineHeight: 1 }}
                     >
                       {item.name}
                     </h2>
                     <p
-                      className="text-sm sm:text-base text-white flex-grow bg-[rgba(255,255,255,0.25)] rounded-b-lg p-2 mt-0 leading-tight drop-shadow-lg"
+                      className="text-sm sm:text-base text-white flex-grow bg-[rgba(0,0,0,0.25)] rounded-b-lg p-2 mt-0 leading-tight drop-shadow-lg"
                       style={{ textShadow: '0 0 5px #0000006c' }}
                     >
                       {item.description}
@@ -127,7 +127,7 @@ export default function Merchant() {
                     <div className="mt-4 flex flex-col gap-2">
                       {item.available ? (
                         <>
-                          <span className="px-3 py-2 rounded-lg text-sm sm:text-base w-full text-center text-[rgba(255,238,0,1)] drop-shadow-lg"
+                          <span className="px-3 py-2 rounded-lg text-sm sm:text-base w-full text-center text-[rgba(0,0,0,1)] drop-shadow-lg"
                                 style={{ textShadow: '0 0 5px #0000006c', lineHeight: 1 }}>
                             <p>R${item.price},00</p>
                           </span>
