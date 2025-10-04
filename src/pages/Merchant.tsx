@@ -101,7 +101,7 @@ export default function Merchant() {
               {items.map((item) => (
                 <div
                   key={item.id}
-                  className="bg-gradient-to-tr from-[rgba(17,17,17,0.5)] via-[rgba(211,155,0,0.5)] to-[rgba(17,17,17,0.5)] 
+                  className="bg-gradient-to-tr from-[rgba(17,17,17,0.5)] via-[rgba(172,126,0,0.5)] to-[rgba(17,17,17,0.5)] 
                             border-2 border-[#ffbb00] rounded-xl hover:scale-105 transition-transform duration-300 cursor-pointer
                             group h-full flex flex-col"
                 >

@@ -23,7 +23,7 @@ ul {
 } */
 
 ul li a {
-  color: rgb(250, 216, 124);
+  color: rgb(255, 238, 0);
   text-decoration: none;
   font-weight: bold;
 }
@@ -34,7 +34,7 @@ ul li a:hover {
 }
 
 ul li button {
-  color: rgb(250, 216, 124);
+  color: rgb(255, 238, 0);
   text-decoration: none;
   font-weight: bold;
 }
