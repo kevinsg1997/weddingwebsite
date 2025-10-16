@@ -23,24 +23,24 @@ ul {
 } */
 
 ul li a {
-  color: rgb(255, 238, 0);
+  color: rgb(85, 62, 0);
   text-decoration: none;
   font-weight: bold;
 }
 
 ul li a:hover {
-  color: rgb(85, 62, 0);
+  color: rgb(255, 238, 0);
   font-weight: bold;
 }
 
 ul li button {
-  color: rgb(255, 238, 0);
+  color: rgb(85, 62, 0);
   text-decoration: none;
   font-weight: bold;
 }
 
 ul li button:hover {
-  color: rgb(85, 62, 0);
+  color: rgb(255, 238, 0);
   font-weight: bold;
 }
 
