@@ -96,7 +96,7 @@ const Info: React.FC = () => {
             </h3>
             <p className="readable-text font-sans text-sm sm:text-base lg:text-lg text-justify">
               <strong>Código de Vestimenta:</strong> Social/Semi-formal<br />
-              <strong>Cores:</strong> Qualquer cor exceto branco ou cores das paletas de madrinhas e padrinhos.
+              <strong>Cores:</strong> Qualquer cor exceto branco ou cores de madrinhas e padrinhos.
             </p>
           </div>
         </div>
@@ -107,7 +107,7 @@ const Info: React.FC = () => {
 
         <div className="p-4 sm:p-6 flex flex-col items-center rounded-lg">
           <h3 className="text-xl sm:text-2xl font-bold font-serif mb-4 text-[rgba(74,88,37,1)]">
-            🎨 Paleta de cores Madrinhas e Padrinhos
+            🎨 Cor para madrinhas e padrinhos
           </h3>
           <p className="readable-text font-sans text-sm sm:text-base lg:text-lg text-justify">Madrinhas</p>
           <img
