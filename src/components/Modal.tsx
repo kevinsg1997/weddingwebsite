@@ -13,6 +13,7 @@ const Modal: React.FC<ModalProps> = ({ closeModal }) => {
   });
 
   const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(false); // Estado de carregamento
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,6 +22,8 @@ const Modal: React.FC<ModalProps> = ({ closeModal }) => {
       setStatus("❌ Por favor, preencha seu nome.");
       return;
     }
+
+    setLoading(true); // Inicia carregamento
 
     try {
       const response = await fetch(
@@ -47,10 +50,11 @@ const Modal: React.FC<ModalProps> = ({ closeModal }) => {
           ? "🎉 Estamos muito felizes em contar com você nesta aventura!"
           : "📜 Sua ausência foi registrada. Estaremos com você em pensamento!"
       );
-
     } catch (err) {
       console.error(err);
       setStatus("❌ Erro ao enviar os dados, tente novamente.");
+    } finally {
+      setLoading(false); // Finaliza carregamento
     }
   };
 
@@ -87,7 +91,7 @@ const Modal: React.FC<ModalProps> = ({ closeModal }) => {
         <h2 className="text-xl sm:text-2xl font-serif quest-title text-center mb-4">
           Confirmação de Presença
         </h2>
-        <p>*Caso seja mais de uma pessoa, enviar os dados de cada um.<br/></p>
+        <p>*Caso seja mais de uma pessoa, enviar os dados de cada um.<br /></p>
         <form className="space-y-4" onSubmit={handleFormSubmit}>
           <div>
             <label htmlFor="Name" className="block readable-text font-sans mb-1">
@@ -149,14 +153,20 @@ const Modal: React.FC<ModalProps> = ({ closeModal }) => {
               type="button"
               onClick={closeModal}
               className="flex-1 border border-quest-gold rounded py-2 readable-text"
+              disabled={loading}
             >
               Cancelar
             </button>
-            <button 
+            <button
               type="submit"
-              className="flex-1 bg-[rgba(0,0,0,0.15)] rounded py-2"
+              disabled={loading}
+              className={`flex-1 rounded py-2 transition-colors duration-200 ${
+                loading
+                  ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  : "bg-[rgba(0,0,0,0.15)] hover:bg-[rgba(0,0,0,0.25)]"
+              }`}
             >
-              Confirmar
+              {loading ? "Enviando..." : "Confirmar"}
             </button>
           </div>
           {status && <p className="text-center mt-4 font-semibold">{status}</p>}
