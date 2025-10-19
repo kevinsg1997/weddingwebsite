@@ -119,7 +119,7 @@ export default function Mission() {
     }
 
     if (grid[r][c] === "merchant") {
-      playSound("/sounds/Merchant.mp3");
+      playSound("/sounds/Shop.mp3");
       setModalText("Venha e veja os itens que você pode comprar para ajudar na aventura do casal!");
       setModalType("merchant");
     } else if (grid[r][c] === "nun") {
