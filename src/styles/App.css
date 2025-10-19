@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
+@plugin "daisyui";
 
 #root {
   max-width: 100%;
@@ -10,7 +11,7 @@
 }
 
 body {
-  background-color: #fff7e0;
+  background-color: #ffffff;
   font-family: serif;
 }
 

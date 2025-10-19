@@ -28,13 +28,12 @@ function Nav({ openModal }: NavProps) {
 
   return (
 <div className="relative top-0 w-screen z-50 max-h-[10%] max-w-full">
-  <nav className="bg-[rgba(165,121,0,0.65)] backdrop-blur-md border-b border-gray-200 shadow-md rounded-b-2xl">
-    <ul className="flex flex-wrap justify-center items-center w-full gap-4 p-4">
+  <nav className="bg-[rgba(242,194,117,0.75)] backdrop-blur-md border-b border-gray-200 shadow-md rounded-b-2xl">
+    <ul className="flex flex-wrap justify-center items-center w-full gap-4 p-4 text-xl">
       <li ref={activeRef} className="active"></li>
       {navItems.map((item, index) => (
         <li
           key={item.label}
-          style={{ fontFamily: "serif" }}
           ref={(el) => {
             if (el) itemRefs.current[index] = el;
           }}
@@ -45,7 +44,6 @@ function Nav({ openModal }: NavProps) {
       <li>
         <button
           onClick={openModal}
-          style={{ fontFamily: "serif" }}
         >
           Confirmar Presença
         </button>

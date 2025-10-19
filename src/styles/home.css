@@ -1,11 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Corinthia:wght@400;700&family=League+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
 body {
     color: rgb(48, 35, 0);
+    font-family: 'Montserrat', sans-serif;
 }
 
 .kep {
     font-family: 'Corinthia', cursive;
     font-weight: normal;
-    color: rgb(131, 96, 0);
+    color: rgb(222, 162, 35);
 }

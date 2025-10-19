@@ -271,7 +271,7 @@ export default function Mission() {
     <div className="flex flex-col items-center min-h-screen p-4 sm:p-6 lg:p-8">
       <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif quest-title mb-4">Cidade da folha</h1>
       
-      <p className="pb-[20px] text-base md:text-lg text-justify">
+      <p className="pb-[20px] text-base md:text-lg text-center">
         Você chega à Cidade da Folha, um lugar tranquilo e encantador. As ruas são calmas, e ao caminhar 
         em direção ao centro, você nota algumas pessoas interessantes, cada uma com sua própria história 
         para contar. O aroma das flores e o som suave das folhas ao vento tornam a caminhada ainda mais agradável.

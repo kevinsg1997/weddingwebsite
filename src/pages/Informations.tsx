@@ -41,7 +41,7 @@ const Info: React.FC = () => {
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif quest-title mb-4">
             Informações da Missão
           </h1>
-          <p className="text-lg sm:text-xl readable-text font-sans">
+          <p className="text-lg sm:text-xl readable-text">
             Tudo que você precisa saber sobre esta aventura épica
           </p>
         </div>
@@ -83,7 +83,7 @@ const Info: React.FC = () => {
             <h3 className="text-xl sm:text-2xl font-bold font-serif mb-4 text-[rgba(74,88,37,1)]">
               📅 Data e Hora da Missão
             </h3>
-            <p className="readable-text font-sans text-sm sm:text-base lg:text-lg text-justify">
+            <p className="readable-text text-sm sm:text-base lg:text-lg text-justify">
               <strong>Data:</strong> 28 de Fevereiro de 2026<br />
               <strong>Hora:</strong> 16:30<br />
               <strong>Duração:</strong> Até a missão estar completa.
@@ -94,10 +94,33 @@ const Info: React.FC = () => {
             <h3 className="text-xl sm:text-2xl font-bold font-serif mb-4 text-[rgba(74,88,37,1)]">
               👗 Traje da Missão
             </h3>
-            <p className="readable-text font-sans text-sm sm:text-base lg:text-lg text-justify">
+            <p className="readable-text text-sm sm:text-base lg:text-lg text-justify">
               <strong>Código de Vestimenta:</strong> Social/Semi-formal<br />
               <strong>Cores:</strong> Qualquer cor exceto branco ou cores de madrinhas e padrinhos.
             </p>
+          </div>
+        </div>
+
+        <div className="flex flex-col items-center">
+          <hr className="my-8 border-t-2 border-[rgba(0,0,0,0.25)] w-1/4" />
+        </div>
+
+        <div className="p-4 sm:p-6 flex flex-col items-center rounded-lg">
+          <div className="p-4 sm:p-6 rounded-lg bg-[rgba(0,0,0,0.15)]">
+            <h3 className="text-xl sm:text-2xl font-bold font-serif mb-4 text-[rgba(74,88,37,1)]">
+              👑 Dicas do bom aventureiro!
+            </h3>
+            <ul className="flex flex-col items-center">
+              <li className="readable-text text-sm sm:text-base lg:text-lg text-justify font-thin">Confirme sua presença com antecedência.</li>
+              <li className="readable-text text-sm sm:text-base lg:text-lg text-justify font-thin">Seja pontual.</li>
+              <li className="readable-text text-sm sm:text-base lg:text-lg text-justify font-thin">Respeite a lista de convidados (Convidado não convida).</li>
+              <li className="readable-text text-sm sm:text-base lg:text-lg text-justify font-thin">Mantenha o clima de alegria e respeito.</li>
+              <li className="readable-text text-sm sm:text-base lg:text-lg text-justify font-thin">Não leve itens da decoração.</li>
+              <li className="readable-text text-sm sm:text-base lg:text-lg text-justify font-thin">Branco é a cor da noiva.</li>
+              <li className="readable-text text-sm sm:text-base lg:text-lg text-justify font-thin">Ao tirar fotos, cuidado para não atrapalhar os fotógrafos.</li>
+              <li className="readable-text text-sm sm:text-base lg:text-lg text-justify font-thin">Evite objetos que possam sujar ou causar incômodos, como bombas de festim ou sprays.</li>
+              <li className="readable-text text-sm sm:text-base lg:text-lg text-justify font-thin">Aproveite a festa.</li>
+            </ul>
           </div>
         </div>
 
