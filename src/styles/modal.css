@@ -1,10 +1,10 @@
-input[type="checkbox"].peer {
+input[type="radio"].peer {
     background-color: #fff;
     border: 2px solid #d1d5db;
     position: relative;
 }
 
-input[type="checkbox"].peer:checked::before {
+input[type="radio"].peer:checked::before {
     content: "✔";
     position: absolute;
     top: 0;
@@ -17,4 +17,25 @@ input[type="checkbox"].peer:checked::before {
     width: 100%;
     height: 100%;
     background-color: green;
+}
+
+#IsNotGoing.peer {
+    background-color: #fff;
+    border: 2px solid #d1d5db;
+    position: relative;
+}
+
+#IsNotGoing.peer:checked::before {
+    content: "✔";
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1.2rem;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: red;
 }

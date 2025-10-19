@@ -55,12 +55,24 @@ const Modal: React.FC<ModalProps> = ({ closeModal }) => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { id, value, type, checked } = e.target;
+    const { name, value, type, checked, id } = e.target;
 
-    setFormData({
-      ...formData,
-      [id]: type === "checkbox" ? checked : value, // Verifica se é um checkbox
-    });
+    if (type === "radio" && name === "attendance") {
+      setFormData(prev => ({
+        ...prev,
+        IsGoing: value === "going",
+      }));
+    } else if (type === "checkbox") {
+      setFormData(prev => ({
+        ...prev,
+        [id]: checked,
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [id]: value,
+      }));
+    }
   };
 
   return (
@@ -75,8 +87,7 @@ const Modal: React.FC<ModalProps> = ({ closeModal }) => {
         <h2 className="text-xl sm:text-2xl font-serif quest-title text-center mb-4">
           Confirmação de Presença
         </h2>
-        <p>*Caso seja mais de uma pessoa, enviar os dados de cada um.<br/>
-        </p>
+        <p>*Caso seja mais de uma pessoa, enviar os dados de cada um.<br/></p>
         <form className="space-y-4" onSubmit={handleFormSubmit}>
           <div>
             <label htmlFor="Name" className="block readable-text font-sans mb-1">
@@ -108,13 +119,29 @@ const Modal: React.FC<ModalProps> = ({ closeModal }) => {
           <div className="flex items-center space-x-2">
             <input
               id="IsGoing"
-              type="checkbox"
-              className="w-5 h-5 border-2 border-gray-400 rounded peer checked:border-green-500 checked:bg-green-500 focus:outline-none"
-              checked={formData.IsGoing}
+              type="radio"
+              name="attendance"
+              value="going"
+              checked={formData.IsGoing === true}
               onChange={handleChange}
+              className="w-5 h-5 border-2 border-gray-400 rounded peer checked:border-green-500 checked:bg-green-500 focus:outline-none"
             />
             <label htmlFor="IsGoing" className="readable-text font-sans peer-checked:text-green-800">
               Vou comparecer
+            </label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <input
+              id="IsNotGoing"
+              type="radio"
+              name="attendance"
+              value="notGoing"
+              checked={formData.IsGoing === false}
+              onChange={handleChange}
+              className="w-5 h-5 border-2 border-gray-400 rounded peer checked:border-red-500 checked:bg-red-500 focus:outline-none"
+            />
+            <label htmlFor="IsNotGoing" className="readable-text font-sans peer-checked:text-red-800">
+              Não vou comparecer
             </label>
           </div>
           <div className="flex gap-4 pt-4">
@@ -127,8 +154,9 @@ const Modal: React.FC<ModalProps> = ({ closeModal }) => {
             </button>
             <button 
               type="submit"
-              className="flex-1 bg-quest-green hover:bg-quest-green/90 rounded py-2">
-              Confirmar Presença
+              className="flex-1 bg-[rgba(0,0,0,0.15)] rounded py-2"
+            >
+              Confirmar
             </button>
           </div>
           {status && <p className="text-center mt-4 font-semibold">{status}</p>}
