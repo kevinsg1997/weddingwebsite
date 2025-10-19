@@ -18,11 +18,7 @@ export default function Home() {
     '/imgs/noivos/foto10.jpg',
     '/imgs/noivos/foto11.jpg',
     '/imgs/noivos/foto12.jpg',
-    '/imgs/noivos/foto13.jpg',
-    '/imgs/noivos/foto14.jpg',
-    '/imgs/noivos/foto15.jpg',
-    '/imgs/noivos/foto16.jpg',
-    '/imgs/noivos/foto17.jpg',
+    '/imgs/noivos/foto13.jpg'
   ];
 
   const [current, setCurrent] = useState(0);
