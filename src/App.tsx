@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Mission from './pages/Mission';
 import Merchant from './pages/Merchant';
 import Informations from './pages/Informations';
+import GuestList from './pages/GuestList';
 import { Routes, Route } from "react-router-dom";
 import Modal from './components/Modal';  // Componente Modal global
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/mission" element={<Mission />} />
         <Route path="/merchant" element={<Merchant />} />
         <Route path="/informations" element={<Informations />} />
+        <Route path="/admin/convidados" element={<GuestList />} />
       </Routes>
 
       {isModalOpen && (
