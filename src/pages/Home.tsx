@@ -95,7 +95,7 @@ export default function Home() {
             alt="Mago"
           />
           <audio
-            src="/sounds/Mage.mp3"
+            src="/sounds/mage.mp3"
             controls
             className="h-6 mb-4"
           />

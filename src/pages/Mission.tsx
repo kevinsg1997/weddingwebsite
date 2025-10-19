@@ -119,21 +119,21 @@ export default function Mission() {
     }
 
     if (grid[r][c] === "merchant") {
-      playSound("/sounds/Shop.mp3");
+      playSound("/sounds/shop.mp3");
       setModalText("Venha e veja os itens que você pode comprar para ajudar na aventura do casal!");
       setModalType("merchant");
     } else if (grid[r][c] === "nun") {
-      playSound("/sounds/Nun.mp3");
+      playSound("/sounds/nun.mp3");
       setModalText("Olá, que bom ver você por aqui! O casal aparentou muito feliz com sua presença. Indico falar com o mercador e com o coucheiro assim que puder! Agora venha aqui, deixe-me abençoar sua jornada.");
       setModalType("nun");
     } else if (grid[r][c] === "kepam") {
-      playSound("/sounds/Kevin.mp3", () => {
-        playSound("/sounds/Pamela.mp3");
+      playSound("/sounds/kevin.mp3", () => {
+        playSound("/sounds/pamela.mp3");
       });
       setModalText("Não acredito que está por aqui! Ficamos tão felizes que tenha realmente vindo nos visitar, temos uma aventura muito importante pela frente e sua ajuda será essencial. Por favor, fale com a freira para poder receber uma benção e ter mais segurança no caminho.");
       setModalType("kepam");
     } else if (grid[r][c] === "charioteer") {
-      playSound("/sounds/Courier.mp3");
+      playSound("/sounds/courier.mp3");
       setModalText("Olá, aventureiro! Sou o cocheiro desta cidade. Ouvi dizer que você está ajudando o Kevin e a Pâmela em uma aventura importante. Se precisar de transporte ou informações sobre a região, estou à disposição. Gostaria de saber mais sobre a missão?");
       setModalType("charioteer");
     }
