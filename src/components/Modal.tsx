@@ -45,6 +45,13 @@ const Modal: React.FC<ModalProps> = ({ closeModal }) => {
         return;
       }
 
+      // Limpar campos após o envio bem-sucedido
+      setFormData({
+        Name: "",
+        Email: "",
+        IsGoing: false,
+      });
+
       setStatus(
         formData.IsGoing
           ? "🎉 Estamos muito felizes em contar com você nesta aventura!"
