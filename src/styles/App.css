@@ -4,6 +4,7 @@
 @plugin "daisyui";
 
 #root {
+  color-scheme: light;
   max-width: 100%;
   margin: 0 auto;
   padding: 2rem;
@@ -49,4 +50,8 @@ body {
 
 .read-the-docs {
   color: #888;
+}
+
+* {
+  color-scheme: light !important;
 }
