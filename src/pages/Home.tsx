@@ -13,9 +13,9 @@ export default function Home() {
     }
   );
   
-  const imageList: string[] = Object.entries(images)
-    .sort(([a], [b]) => a.localeCompare(b))
-    .map(([, value]) => value as string);
+  const imageList: string[] = Object.keys(images)
+    .map((key) => images[key] as string)
+    .sort(() => Math.random() - 0.5);
 
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState("right");
