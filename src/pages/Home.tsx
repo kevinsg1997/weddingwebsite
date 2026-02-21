@@ -1,9 +1,18 @@
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import '../styles/home.css';
 
 export default function Home() {
   const navigate = useNavigate();
+
+  function shuffle(array: string[]) {
+    const newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
+  }
 
   const images = import.meta.glob<string>(
     '../assets/noivos/*.{jpg,jpeg,png,webp}',
@@ -12,10 +21,13 @@ export default function Home() {
       import: 'default'
     }
   );
-  
-  const imageList: string[] = Object.keys(images)
-    .map((key) => images[key] as string)
-    .sort(() => Math.random() - 0.5);
+
+  const imageList = useMemo(() => {
+    const list = Object.keys(images).map(
+      (key) => images[key] as string
+    );
+    return shuffle(list);
+  }, []);
 
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState("right");
