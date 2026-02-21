@@ -5,21 +5,17 @@ import '../styles/home.css';
 export default function Home() {
   const navigate = useNavigate();
 
-  const imageList = [
-    '/imgs/noivos/foto1.jpg',
-    '/imgs/noivos/foto2.jpg',
-    '/imgs/noivos/foto3.jpg',
-    '/imgs/noivos/foto4.jpg',
-    '/imgs/noivos/foto5.jpg',
-    '/imgs/noivos/foto6.jpg',
-    '/imgs/noivos/foto7.jpg',
-    '/imgs/noivos/foto8.jpg',
-    '/imgs/noivos/foto9.jpg',
-    '/imgs/noivos/foto10.jpg',
-    '/imgs/noivos/foto11.jpg',
-    '/imgs/noivos/foto12.jpg',
-    '/imgs/noivos/foto13.jpg'
-  ];
+  const images = import.meta.glob<string>(
+    '../assets/noivos/*.{jpg,jpeg,png,webp}',
+    {
+      eager: true,
+      import: 'default'
+    }
+  );
+  
+  const imageList: string[] = Object.entries(images)
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([, value]) => value as string);
 
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState("right");
